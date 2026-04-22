@@ -225,10 +225,12 @@ const {name, pincode, address1, address2, citystate, phonenumber} = req.body
 
 exports.logout = A( async(req, res, next)=>{
   
-  res.cookie('token', null,{
-    expire:new Date(Date.now()),
-    httpOnly:true
-});
+    res.cookie('token', null, {
+        expire: new Date(Date.now()),
+        httpOnly: true,
+        secure: true,
+        sameSite: 'none'
+    });
 res.status(200).json({
     success:true,
     message:"Log Out sucessfully"
