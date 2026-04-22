@@ -10,9 +10,17 @@ const Reviews = require('./routes/reviewroutes')
 const Squad = require('./routes/squadroutes')
 const errorMiddleware = require('./Middelwares/error');
 const path = require("path");
+const cors = require('cors');
 if (process.env.NODE_ENV !== "PRODUCTION") {
     require("dotenv").config({ path: "backend/config/config.env" });
-  }
+}
+
+app.use(cors({
+    origin: ['https://myntra-master-orcin.vercel.app', 'http://localhost:3000'],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 app.use(express.json())
 app.use(cookieParser())
