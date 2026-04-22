@@ -9,7 +9,7 @@ import { BsHeart } from 'react-icons/bs'
 import { BsTag } from 'react-icons/bs'
 import { BiSpreadsheet } from 'react-icons/bi'
 import elementClass from 'element-class'
-import Single_product from '../Product/Single_product'
+import SingleProduct from '../Product/Single_product'
 import {VscChromeClose} from 'react-icons/vsc'
 import {useAlert} from 'react-alert'
 import {getuser} from '../../action/useraction'
@@ -17,7 +17,7 @@ import {createbag, createwishlist, clearErrors} from '../../action/orderaction'
 import Reviews from '../Reviews/Reviews'
 import Footer from '../Footer/Footer'
 
-const Ppage = () => {
+const ProductPage = () => {
   const param = useParams()
   const alert  =useAlert()
   const dispatch = useDispatch()
@@ -98,7 +98,7 @@ const Ppage = () => {
       alert.error(werror)
       dispatch(clearErrors())
     }
-  }, [dispatch, param, error, alert, werror]);
+  }, [dispatch, param, error, alert, werror, state]);
 
   return (
     <Fragment>
@@ -122,7 +122,7 @@ const Ppage = () => {
                 <div className='grid grid-cols-2 gap-2 '>
                   {
                     product.images.map((e, index) =>
-                      <div key={index} className='w-full overflow-hidden' onClick={()=>(Addclass(),setimg(e.url))}>
+                      <div key={index} className='w-full overflow-hidden' onClick={()=>{ Addclass(); setimg(e.url); }}>
                         <img src={e.url} className='w-full border-[0.5px] border-slate-100 hover:-translate-y-1 hover:scale-110 duration-300 cursor-zoom-in ' alt="productImage" />
                       </div>
 
@@ -216,7 +216,7 @@ const Ppage = () => {
             </div>
             <h1 className='font1 flex items-center mt-4 font-semibold px-6 py-2'>SIMILAR PRODUCTS</h1>
             <ul className='grid grid-cols-2 2xl:grid-cols-5 xl:grid-cols-5 lg:grid-cols-5 2xl:gap-10 xl:gap-10 lg:gap-10 px-6'>
-              {similar && similar.map((pro) => (<Single_product pro={pro} key={pro._id} />))}
+              {similar && similar.map((pro) => (<SingleProduct pro={pro} key={pro._id} />))}
             </ul>
             <Footer/>
           </div>
@@ -229,4 +229,4 @@ const Ppage = () => {
   )
 }
 
-export default Ppage
+export default ProductPage

@@ -24,8 +24,6 @@ const Otpverify = () => {
     }
   }, [mobile, alert, redirect])
 
-  const H = window.innerHeight
-  const Hpx = H - 56
 
   const continues = (e) => {
     e.preventDefault();
@@ -84,7 +82,7 @@ const Otpverify = () => {
      
     }
    
-  }, [user, loading, redirect,alert]);
+  }, [user, loading, redirect, alert, dispatch]);
 
 
   return (

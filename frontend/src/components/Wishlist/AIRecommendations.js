@@ -7,7 +7,6 @@ import { MdRecommend, MdTrendingUp } from 'react-icons/md'
 
 const AIRecommendations = ({ recommendations, onMoveToBag, userId }) => {
     const [animatedCards, setAnimatedCards] = useState({})
-    const [typingText, setTypingText] = useState({})
 
     useEffect(() => {
         // Animate cards on mount
@@ -287,13 +286,13 @@ const AIRecommendations = ({ recommendations, onMoveToBag, userId }) => {
                         </h3>
                         <div className="space-y-2 text-sm text-gray-700">
                             <p>
-                                • <strong>Price Range:</strong> Your selected products span from ₹{Math.min(...Object.values(recommendations).map(p => p.sellingPrice)).toLocaleString()} to ₹{Math.max(...Object.values(recommendations).map(p => p.sellingPrice)).toLocaleString()}
+                                • <strong>Price Range:</strong> Your selected products span from ₹{Math.min(...Object.values(recommendations).filter(p => p).map(p => p.sellingPrice)).toLocaleString()} to ₹{Math.max(...Object.values(recommendations).filter(p => p).map(p => p.sellingPrice)).toLocaleString()}
                             </p>
                             <p>
-                                • <strong>Best Savings:</strong> You can save up to ₹{Math.max(...Object.values(recommendations).map(p => p.mrp - p.sellingPrice)).toLocaleString()} with the right choice
+                                • <strong>Best Savings:</strong> You can save up to ₹{Math.max(...Object.values(recommendations).filter(p => p).map(p => (p.mrp || p.sellingPrice) - p.sellingPrice)).toLocaleString()} with the right choice
                             </p>
                             <p>
-                                • <strong>Brand Diversity:</strong> {new Set(Object.values(recommendations).map(p => p.brand)).size} different brands in your selection
+                                • <strong>Brand Diversity:</strong> {new Set(Object.values(recommendations).filter(p => p).map(p => p.brand)).size} different brands in your selection
                             </p>
                         </div>
                     </div>

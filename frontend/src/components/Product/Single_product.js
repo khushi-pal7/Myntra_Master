@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useCallback } from 'react'
 import './Single_product.css'
-import { AiFillStar } from 'react-icons/ai'
 import { BiRupee } from 'react-icons/bi'
 import { IoIosHeartEmpty } from 'react-icons/io'
 import { Link } from 'react-router-dom'
@@ -8,7 +7,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 
 
-const Single_product = ({ pro }) => {
+const SingleProduct = ({ pro }) => {
 
 
     let slideIndex = 1;
@@ -108,7 +107,7 @@ const Single_product = ({ pro }) => {
                     <Link to={`/products/${pro._id}`} target='_blank' >
                         <li className=' w-full border-[1px] 
             border-slate-200 grid-cols-1 2xl:border-none xl:border-none lg:border-none 
-              relative ' onMouseEnter={() => (showdiv(), changeimg())} onMouseLeave={() => (notshowdiv(), stopchangeimg())}>
+              relative ' onMouseEnter={() => { showdiv(); changeimg(); }} onMouseLeave={() => { notshowdiv(); stopchangeimg(); }}>
 
                             <div className="slideshow-container min-h-[200px]">
 
@@ -136,7 +135,7 @@ const Single_product = ({ pro }) => {
                             <div className={`${pro.style_no}hover hidden absolute pb-6 bottom-0 w-full bg-[#ffffff]  mx-auto `}>
                                 <div className='text-center mb-2'>
                                     {pro.images.map((img, i) => (
-                                        <span key={i} className={`${pro.style_no}1 dot `} onClick={() => (currentSlide(i + 1))} ></span>
+                                        <span key={i} className={`${pro.style_no}1 dot `} onClick={() => { currentSlide(i + 1); }} ></span>
 
                                     ))}
                                 </div>
@@ -164,4 +163,4 @@ const Single_product = ({ pro }) => {
     )
 }
 
-export default Single_product
+export default SingleProduct

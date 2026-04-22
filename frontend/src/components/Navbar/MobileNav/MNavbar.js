@@ -28,6 +28,7 @@ const MNavbar = ({ user }) => {
 
     const dispatch = useDispatch()
     const redirect = useNavigate()
+    const alert = useAlert()
     const [show, setShow] = useState(false);
     const [Class, setClass] = useState("hidden");
     const [Menul, setMenul] = useState("hidden");
@@ -44,7 +45,10 @@ const MNavbar = ({ user }) => {
     const [Beauty, setBeauty] = useState(false)
     const classchange = () => setClass("block");
     const classunchange = () => setClass("hidden");
-    const handleClose = () => (setShow(false), redirect('/products'));
+    const handleClose = () => {
+        setShow(false);
+        redirect('/products');
+    };
     const handleShow = () => setShow(true);
     const loginunchange = () => setClass("hidden");
     const loginClose = () => setShow(false);
@@ -182,7 +186,7 @@ const MNavbar = ({ user }) => {
 
       function searchenter(e) {
        
-        if (e.keyCode == 13) {
+        if (e.keyCode === 13) {
             if (state.trim()) {
                 redirect(`/products?keyword=${state}`)
                 dispatch(Allproduct())
@@ -214,7 +218,7 @@ const MNavbar = ({ user }) => {
                 <div className=' border-b-2 h-14 px-3 py-3 '>
                     <div className='my-auto grid grid-flow-col auto-cols-max'>
                         <div className='flex '>
-                            <AiOutlineMenu className='text-3xl text-[#282c3f]' onClick={() => (handleShow(), classchange())} />
+                            <AiOutlineMenu className='text-3xl text-[#282c3f]' onClick={() => { handleShow(); classchange(); }} />
                            <Link to='/'> <h1 className='text-[#282c3f] text-xl py-1 ml-2'>Myntra</h1></Link>
                         </div>
 
@@ -244,7 +248,7 @@ const MNavbar = ({ user }) => {
             <div className={`w-[100vw] ${Class} absolute top-0 z-10 overflow-y-scroll`}>
                 <div className='overflow-y-scroll canvas'>
                     {transitions((styles, item) => item && <animated.div style={styles}>
-                        <Offcanvas show={show} onHide={() => (loginClose(), loginunchange())} id="offcanvas"
+                        <Offcanvas show={show} onHide={() => { loginClose(); loginunchange(); }} id="offcanvas"
                             className='absolute canvas  h-[100vh] top-0 z-20 translate-x-0 bg-white focus:outline-0 overflow-y-scroll'
                             onTouchEnd={touchend} onTouchMove={touchhandler} onTouchStart={touchstart}
                         >
@@ -255,12 +259,12 @@ const MNavbar = ({ user }) => {
                                     {
                                         user ?
 
-                                        <div className='text-[#ee5f73] font1 text-xs font-bold absolute right-14 top-24 ' onClick={()=>(loginClose(), loginunchange(),logoutBTN())}>
+                                        <div className='text-[#ee5f73] font1 text-xs font-bold absolute right-14 top-24 ' onClick={() => { loginClose(); loginunchange(); logoutBTN(); }}>
                                         <span>LOGOUT</span>
                                 
                                         </div>
                                         :
-                                        <Link to='/Login'> <div className='text-[#ee5f73] font1 text-xs font-bold absolute right-14 top-24 'onClick={()=>(loginClose(), loginunchange())}>
+                                        <Link to='/Login'> <div className='text-[#ee5f73] font1 text-xs font-bold absolute right-14 top-24 'onClick={() => { loginClose(); loginunchange(); }}>
                                                 <span>SIGN UP.</span>
                                                 <span>&nbsp;&nbsp;&nbsp;LOGIN</span>
                                             </div>  </Link>
@@ -271,14 +275,14 @@ const MNavbar = ({ user }) => {
                                 
                                 <ul>
                                     <Ripples color="#fb56c1" className='w-full'>
-                                        <li className='text-[#282c3f] font1 px-5 py-4 relative w-full flex ' onClick={() => (setMen(Men ? (false) : (true)), setMenul(Menul === "hidden" ? "block" : "hidden"))}>
+                                        <li className='text-[#282c3f] font1 px-5 py-4 relative w-full flex ' onClick={() => { setMen(Men ? false : true); setMenul(Menul === "hidden" ? "block" : "hidden"); }}>
                                             <span className='float-left'>Men</span>
                                             <span className='absolute mx-5 right-0'>{Men ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>
                                         </li>
                                     </Ripples>
                                     <MMen Men={Menul} fun1={handleClose} fun2={classunchange} />
                                     <Ripples color="#fb56c1" className='w-full'>
-                                        <li className='text-[#282c3f] font1 px-5 py-4 relative w-full flex ' onClick={() => (setWomen(Women ? (false) : (true)), setMenu2(Menu2 === "hidden" ? "block" : "hidden"))}>
+                                        <li className='text-[#282c3f] font1 px-5 py-4 relative w-full flex ' onClick={() => { setBeauty(Beauty ? false : true); setMenu5(Menu5 === "hidden" ? "block" : "hidden"); }}>
                                             <span className='float-left'>Women</span>
                                             <span className='absolute mx-5 right-0'>{Women ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>
                                         </li>

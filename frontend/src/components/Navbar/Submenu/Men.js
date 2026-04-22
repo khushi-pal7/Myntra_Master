@@ -15,7 +15,6 @@ const Men = ({show, CMenu, parentCallback}) => {
     delay: 300,
     
   })
-  let H = window.screen.height 
     
   return (
    <Fragment>

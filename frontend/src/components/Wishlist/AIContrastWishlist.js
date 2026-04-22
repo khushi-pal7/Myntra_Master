@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createbag, deletewish, getwishlist } from '../../action/orderaction'
 import { getuser, clearErrors } from '../../action/useraction'
@@ -132,7 +132,7 @@ const AIContrastWishlist = () => {
         }
         
         // Find the product from wishlist
-        const product = wishlist.find(item => item.product._id === productId)?.product
+        const product = wishlist.orderItems.find(item => item.product._id === productId)?.product
         if (!product) {
             Alert.error('Product not found')
             return
@@ -225,7 +225,7 @@ const AIContrastWishlist = () => {
     }
 
     return (
-        <Fragment>
+        <>
             <div className="max-w-7xl mx-auto px-4 py-6">
                 {/* Header Section */}
                 <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
@@ -345,7 +345,7 @@ const AIContrastWishlist = () => {
                     </div>
                 )}
             </div>
-        </Fragment>
+        </>
     )
 }
 

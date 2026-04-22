@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import Single_product from '../Product/Single_product'
+import SingleProduct from '../Product/Single_product'
 import { useDispatch, useSelector } from 'react-redux'
 import { createbag, deletewish, getwishlist,  } from '../../action/orderaction'
 import { MdClear } from 'react-icons/md'
@@ -12,7 +12,6 @@ import Nowishlist from './Nowishlist'
 
 const Wishlist = () => {
     const Alert = useAlert()
-    const redirect = useNavigate()
     const dispatch = useDispatch()
     const { wishlist, loading } = useSelector(state => state.wishlist_data)
     const { isAuthentication, loading: userloading, error, user } = useSelector(state => state.user)
@@ -35,10 +34,14 @@ const Wishlist = () => {
        
         
     }
-    if (state2=== false && dellll === true) {
-        dispatch(getwishlist(user._id))
-        setstate2(true)
-    }
+    useEffect(() => {
+        if (state2 === false && dellll === true) {
+            if (user && user._id) {
+                dispatch(getwishlist(user._id))
+            }
+            setstate2(true)
+        }
+    }, [dellll, dispatch, user, state2])
 
 
     function movetobag(user, product) {
@@ -80,7 +83,7 @@ const Wishlist = () => {
             }
         }
 
-    }, [dispatch, error, userloading, isAuthentication, user]);
+    }, [dispatch, error, userloading, isAuthentication, user, state, state1, Alert]);
 
     return (
         <Fragment>
@@ -107,7 +110,7 @@ const Wishlist = () => {
                                         return (
                                             <span key={pro._id} className='border-[1px] border-slate-300 relative'>
                                                 <div className='text-base  cursor-pointer bg-slate-400 rounded-full absolute right-3 top-3 z-[5] h-max w-max' onClick={()=>delwish(user._id, pro.product._id)}><MdClear className='font-extralight '/></div>
-                                                <Single_product pro={pro.product} />
+                                                <SingleProduct pro={pro.product} />
                                                 <div className='cursor-pointer w-full text-center font1 font-semibold text-base py-2 text-[#ff3f6c] border-t-[1px] border-slate-300'onClick={()=>movetobag(user._id, pro.product._id)}>MOVE TO BAG</div>
                                             </span>
                                         );

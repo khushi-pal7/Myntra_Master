@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import Single_product from './Single_product'
+import SingleProduct from './Single_product'
 import { useDispatch, useSelector } from 'react-redux'
 import { Allproduct as getproduct, clearErrors } from '../../action/productaction'
 import Loader from '../Loader/Loader'
@@ -12,7 +12,7 @@ import {IoIosArrowBack, IoIosArrowForward} from 'react-icons/io'
 import MFilter from './MFilter'
 import Footer from '../Footer/Footer'
 
-const Allproductpage = () => {
+const AllProductPage = () => {
     const dispatch = useDispatch()
     const { product, pro, loading, error, length } = useSelector(state => state.Allproducts)
     const [sortvalue, setsortvalue] = useState('Recommended')
@@ -169,19 +169,19 @@ const Allproductpage = () => {
                             Sort by :  <span className='font1 font-semibold '>{sortvalue}</span> <span className='absolute right-4 font-serif text-lg'><IoIosArrowDown /></span>
                         </div>
 
-                        <div className=' text-sm w-max pl-5  py-2 mt-12' onClick={() => (datefun(1), setsortvalue('What`s New'))} >
+                        <div className=' text-sm w-max pl-5  py-2 mt-12' onClick={() => { datefun(1); setsortvalue('What`s New'); }} >
                             <span className='font1 '>What`s New</span>
                         </div>
-                        <div className=' text-sm w-max pl-5  py-2 ' onClick={() => (setsortvalue('Popularity'))} >
+                        <div className=' text-sm w-max pl-5  py-2 ' onClick={() => { setsortvalue('Popularity'); }} >
                             <span className='font1'>Popularity</span>
                         </div>
-                        <div className=' text-sm w-max pl-5  py-2 ' onClick={() => (pricefun(-1), setsortvalue('Better Discount'))}>
+                        <div className=' text-sm w-max pl-5  py-2 ' onClick={() => { pricefun(-1); setsortvalue('Better Discount'); }}>
                             <span className='font1'>Better Discount</span>
                         </div>
-                        <div className=' text-sm w-max pl-5  py-2 ' onClick={() => (pricefun(-1), setsortvalue('Price: High To Low'))}>
+                        <div className=' text-sm w-max pl-5  py-2 ' onClick={() => { pricefun(-1); setsortvalue('Price: High To Low'); }}>
                             <span className='font1'>Price: High To Low</span>
                         </div>
-                        <div className=' text-sm w-max pl-5  py-2 ' onClick={() => (pricefun(1), setsortvalue('Price: Low To High'))} >
+                        <div className=' text-sm w-max pl-5  py-2 ' onClick={() => { pricefun(1); setsortvalue('Price: Low To High'); }} >
                             <span className='font1'>Price: Low To High</span>
                         </div>
                         <div className=' text-sm w-max pl-5  py-2 ' onClick={() => (setsortvalue('Customer Rating'))} >
@@ -219,7 +219,7 @@ const Allproductpage = () => {
                                 loading === false &&
                                 <Fragment>
                                     <ul className='grid grid-cols-2 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-4 2xl:gap-10 xl:gap-10 lg:gap-10 '>
-                                        {product && product.map((pro) => (<Single_product pro={pro} key={pro._id} />))}
+                                        {product && product.map((pro) => (<SingleProduct pro={pro} key={pro._id} />))}
                                        
                                     </ul>
                                     {
@@ -229,7 +229,7 @@ const Allproductpage = () => {
                                         {
                                             currentPage === 1 ? "" :
                                             <button className=' mr-10  text-lg flex items-center border-[1px] border-slate-300 py-1 px-5 rounded-[4px]
-                                            hover:border-[black]' onClick={()=>(setCurrentPage(currentPage-1), setCurrentPageNo(currentPage-1))} ><IoIosArrowBack/><h1>Previous</h1>  </button>
+                                            hover:border-[black]' onClick={()=>{ setCurrentPage(currentPage-1); setCurrentPageNo(currentPage-1); }} ><IoIosArrowBack/><h1>Previous</h1>  </button>
                                         }
                                        
                                     <Pagination
@@ -253,7 +253,7 @@ const Allproductpage = () => {
                                     {
                                         (pro && currentPage === Math.ceil(pro.length / 50)) ? '' : 
                                         <button className=' ml-10 text-lg flex items-center border-[1px] border-slate-300 py-1 px-5 rounded-[4px]
-                                        hover:border-[black]' onClick={()=>(setCurrentPage(currentPage+1), setCurrentPageNo(currentPage+1))}><h1>Next</h1> <IoIosArrowForward/> </button>
+                                        hover:border-[black]' onClick={()=>{ setCurrentPage(currentPage+1); setCurrentPageNo(currentPage+1); }}><h1>Next</h1> <IoIosArrowForward/> </button>
                                     }
                                    
                                  </div> 
@@ -278,4 +278,4 @@ const Allproductpage = () => {
     )
 }
 
-export default Allproductpage
+export default AllProductPage

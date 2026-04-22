@@ -238,11 +238,9 @@ for (let line = 0; line < n; line++) {
 } 
 
 
-useEffect(() => {
-  check()
- 
-
-}, []);
+  useEffect(() => {
+    check()
+  }, []);
 
 
   return (
@@ -290,7 +288,7 @@ useEffect(() => {
               )
             }
            <button className={`absolute bottom-1 right-2 font1 text-[#ff3f6c] ${colorulbtn} `}
-           onClick={()=>(setcolorul('max-h-max'), setcolorulbtn('hidden'))}> + more</button>
+           onClick={()=>{ setcolorul('max-h-max'); setcolorulbtn('hidden'); }}> + more</button>
           </ul>
               {/* Price filter *************************************************** */}
           <ul className={`pl-8 border-b-[1px] border-slate-200 py-4  overflow-hidden relative `}>

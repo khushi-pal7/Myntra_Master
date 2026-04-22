@@ -130,20 +130,20 @@ const Footer = () => {
        <div className="mt-4 w-full">
        <h1 className='text-base font-semibold'>USEFUL LINKS</h1>
        <div className='text-sm text-slate-500 pt-2 leading-7 w-[100%] overflow-clip'>
-         <a className="mr-2 leading-7">Contact Us</a>|
-         <a className="mr-2 leading-7 ml-2">FAQ</a>|
-         <a className="mr-2 leading-7 ml-2">T&C</a>|
-         <a className="mr-2 leading-7 ml-2">Terms Of Use</a>|
-         <a className="mr-2 leading-7 ml-2">Track Orders</a>|
-         <a className="mr-2 leading-7 ml-2">Shipping</a>|
-         <a className="mr-2 leading-7 ml-2">Cancellation</a>|
-         <a className="mr-2 leading-7 ml-2">Returns</a>|
-         <a className="mr-2 leading-7 ml-2">Whitehat</a>|
-         <a className="mr-2 leading-7 ml-2">Blog</a>|
-         <a className="mr-2 leading-7 ml-2">Careers</a>|
-         <a className="mr-2 leading-7 ml-2">Privacy Policy</a>|
-         <a className="mr-2 leading-7 ml-2">Site Map</a>|
-         <a className="mr-2 leading-7 ml-2">Corporate Information</a>
+         <a href="#" className="mr-2 leading-7">Contact Us</a>|
+         <a href="#" className="mr-2 leading-7 ml-2">FAQ</a>|
+         <a href="#" className="mr-2 leading-7 ml-2">T&C</a>|
+         <a href="#" className="mr-2 leading-7 ml-2">Terms Of Use</a>|
+         <a href="#" className="mr-2 leading-7 ml-2">Track Orders</a>|
+         <a href="#" className="mr-2 leading-7 ml-2">Shipping</a>|
+         <a href="#" className="mr-2 leading-7 ml-2">Cancellation</a>|
+         <a href="#" className="mr-2 leading-7 ml-2">Returns</a>|
+         <a href="#" className="mr-2 leading-7 ml-2">Whitehat</a>|
+         <a href="#" className="mr-2 leading-7 ml-2">Blog</a>|
+         <a href="#" className="mr-2 leading-7 ml-2">Careers</a>|
+         <a href="#" className="mr-2 leading-7 ml-2">Privacy Policy</a>|
+         <a href="#" className="mr-2 leading-7 ml-2">Site Map</a>|
+         <a href="#" className="mr-2 leading-7 ml-2">Corporate Information</a>
          </div>
        </div>
 

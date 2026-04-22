@@ -38,7 +38,7 @@ const SquadRoom = () => {
 
     const currentUserId = isGuest ? guestId : user?._id;
     const currentUserName = isGuest ? guestName : (user?.name || `User-${user?.phonenumber}`);
-    const isHost = room && user && room.createdBy === user._id;
+    const isHost = room && user && room.createdBy?.toString() === user._id?.toString();
 
     // Fetch room details
     useEffect(() => {
@@ -130,7 +130,7 @@ const SquadRoom = () => {
         return () => {
             newSocket.disconnect();
         };
-    }, [roomCode, isAuthentication, guestToken]);
+    }, [roomCode, isAuthentication, guestToken, guestName, currentUserName, isGuest, dispatch]);
 
     // Auto-scroll to bottom on new messages
     useEffect(() => {

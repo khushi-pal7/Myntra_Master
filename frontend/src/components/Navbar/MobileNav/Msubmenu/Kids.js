@@ -24,7 +24,7 @@ const MKids = ({ MKids, fun1, fun2 }) => {
         </Ripples>
         {Topwear && Boys_Clothing.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 
@@ -36,7 +36,7 @@ const MKids = ({ MKids, fun1, fun2 }) => {
         </Ripples>
         {Indian && Girls_Clothing.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 
@@ -49,7 +49,7 @@ const MKids = ({ MKids, fun1, fun2 }) => {
         {Bottomwear && KFootwear.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
             
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 
@@ -61,7 +61,7 @@ const MKids = ({ MKids, fun1, fun2 }) => {
         </Ripples>
         {Innerwear && Toys.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 
@@ -73,19 +73,19 @@ const MKids = ({ MKids, fun1, fun2 }) => {
         </Ripples>
         {Footwear && Infants.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 
         <Ripples color="#fb56c1" className='w-full'>
-          <li className='text-[#282c3f]  pl-8 pr-5 py-4 relative w-full flex 'onClick={()=>(fun1(), fun2())}>
+          <li className='text-[#282c3f]  pl-8 pr-5 py-4 relative w-full flex 'onClick={() => { fun1(); fun2(); }}>
             <span className='float-left'>Home&nbsp;&&nbsp;Bath</span>
           </li>
         </Ripples>
       
 
         <Ripples color="#fb56c1" className='w-full'>
-          <li className='text-[#282c3f]  pl-8 pr-5 py-4 relative w-full flex 'onClick={()=>(fun1(), fun2())}>
+          <li className='text-[#282c3f]  pl-8 pr-5 py-4 relative w-full flex 'onClick={() => { fun1(); fun2(); }}>
             <span className='float-left'>Personal&nbsp;Care</span>
           </li>
         </Ripples>
@@ -98,7 +98,7 @@ const MKids = ({ MKids, fun1, fun2 }) => {
         </Ripples>
         {Sports && Kids_Accessories.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
 
           </Ripples>
         )}
@@ -111,7 +111,7 @@ const MKids = ({ MKids, fun1, fun2 }) => {
         </Ripples>
         {Gadgets && KBrands.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 

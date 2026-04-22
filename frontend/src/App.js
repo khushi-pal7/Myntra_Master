@@ -8,12 +8,12 @@ import MNavbar from "./components/Navbar/MobileNav/MNavbar.js";
 import Login from "./components/Login/Login";
 import Otpverify from "./components/Login/otpverify";
 import Registeruser  from "./components/Login/Registeruser";
-import { getuser, clearErrors } from "./action/useraction";
+import { getuser } from "./action/useraction";
 import Overview from "./components/Login/Dashboard/overview";
 import Allproductpage from "./components/Product/Allproduct";
 import Ppage from "./components/Productpage/Ppage";
 import MPpage from "./components/Productpage/MPpage";
-import Footer from "./components/Footer/Footer";
+// import Footer from "./components/Footer/Footer";
 import Coupon from "./components/Coupon/Coupon";
 import Wishlist from "./components/Wishlist/Wishlist";
 import AIContrastWishlist from "./components/Wishlist/AIContrastWishlist";
@@ -26,7 +26,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 function App() {
   const dispatch = useDispatch()
-  const {loading, user, isAuthentication, error} = useSelector(state => state.user)
+  const {loading, user, isAuthentication} = useSelector(state => state.user)
 
  const [state, setstate] = useState(false)
   
@@ -61,7 +61,7 @@ function App() {
         }
     }
     
-   }, [dispatch, isAuthentication]);
+   }, [dispatch, isAuthentication, state]);
  
   return (
     <Router>

@@ -15,8 +15,6 @@ const Registeruser = () => {
     const redirect = useNavigate()
     const mobile = JSON.parse(localStorage.getItem('mobileno'))
     const { user, error, loading } = useSelector(state => state.updateuser)
-    const H = window.innerHeight
-    const Hpx = H - 56
     const [name, setname] = useState('')
     const [gender, setgender] = useState('')
     const [email, setemail] = useState('')

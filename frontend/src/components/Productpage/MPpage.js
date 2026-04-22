@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment, useState, CSSProperties } from 'react'
+import React, { useEffect, Fragment, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { singleProduct } from '../../action/productaction'
@@ -12,13 +12,13 @@ import img2 from '../images/2.webp'
 import img3 from '../images/3.webp'
 import { BsHeart } from 'react-icons/bs'
 import { BsHandbag } from 'react-icons/bs'
-import Single_product from '../Product/Single_product'
+import SingleProduct from '../Product/Single_product'
 import {createbag, createwishlist} from '../../action/orderaction'
 import {useAlert} from 'react-alert'
 import Reviews from '../Reviews/Reviews'
 import Footer from '../Footer/Footer'
 
-const MPpage = () => {
+const MobileProductPage = () => {
     const param = useParams()
     const alert = useAlert()
     const dispatch = useDispatch()
@@ -195,7 +195,7 @@ const MPpage = () => {
                                 <div className='mt-2 pb-6 pt-4 relative bg-white px-4'>
                                 <h1 className='font1 flex items-center mt-4 font-semibold px-6 py-2'>SIMILAR PRODUCTS</h1>
                                     <ul className='grid grid-cols-2 gap-2'>
-                                    {similar && similar.map((pro) => (<Single_product pro={pro} key={pro._id} />))}
+                                    {similar && similar.map((pro) => (<SingleProduct pro={pro} key={pro._id} />))}
                                     </ul>
                                 </div>
                                 
@@ -215,4 +215,4 @@ const MPpage = () => {
     )
 }
 
-export default MPpage
+export default MobileProductPage

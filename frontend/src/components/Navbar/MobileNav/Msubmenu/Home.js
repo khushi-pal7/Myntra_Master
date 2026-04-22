@@ -27,7 +27,7 @@ const Mhome = ({ Mhome, fun1, fun2 }) => {
         </Ripples>
         {Topwear && BedLinenFurnishing.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 
@@ -38,7 +38,7 @@ const Mhome = ({ Mhome, fun1, fun2 }) => {
         </Ripples>
         {Indian && Flooring.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 
@@ -49,7 +49,7 @@ const Mhome = ({ Mhome, fun1, fun2 }) => {
         </Ripples>
         {Bottomwear && Bath.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 
@@ -61,7 +61,7 @@ const Mhome = ({ Mhome, fun1, fun2 }) => {
         </Ripples>
         {Innerwear && LampsLighting.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 
@@ -73,25 +73,25 @@ const Mhome = ({ Mhome, fun1, fun2 }) => {
         </Ripples>
         {Footwear && HomeDécor.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 
         <Ripples color="#fb56c1" className='w-full'>
-          <li className='text-[#282c3f]  pl-8 pr-5 py-4 relative w-full flex 'onClick={()=>(fun1(), fun2())}>
+          <li className='text-[#282c3f]  pl-8 pr-5 py-4 relative w-full flex 'onClick={() => { fun1(); fun2(); }}>
             <span className='float-left'>Cushions&nbsp;&&nbsp;Cushion&nbsp;Covers</span>
           </li>
         </Ripples>
 
 
         <Ripples color="#fb56c1" className='w-full'>
-          <li className='text-[#282c3f]  pl-8 pr-5 py-4 relative w-full flex 'onClick={()=>(fun1(), fun2())}>
+          <li className='text-[#282c3f]  pl-8 pr-5 py-4 relative w-full flex 'onClick={() => { fun1(); fun2(); }}>
             <span className='float-left'>Curtains</span>
           </li>
         </Ripples>
 
         <Ripples color="#fb56c1" className='w-full'>
-          <li className='text-[#282c3f]  pl-8 pr-5 py-4 relative w-full flex 'onClick={()=>(fun1(), fun2())}>
+          <li className='text-[#282c3f]  pl-8 pr-5 py-4 relative w-full flex 'onClick={() => { fun1(); fun2(); }}>
             <span className='float-left'>Home&nbsp;Gift&nbsp;Sets</span>
           </li>
         </Ripples>
@@ -105,7 +105,7 @@ const Mhome = ({ Mhome, fun1, fun2 }) => {
         </Ripples>
         {Gadgets && KitchenTable.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 
@@ -117,7 +117,7 @@ const Mhome = ({ Mhome, fun1, fun2 }) => {
         </Ripples>
         {A && Storage.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 
@@ -129,7 +129,7 @@ const Mhome = ({ Mhome, fun1, fun2 }) => {
         </Ripples>
         {Brand && HBrands.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 

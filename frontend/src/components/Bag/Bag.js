@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import {BsCloudLightningRainFill, BsShieldFillCheck} from 'react-icons/bs'
+import { BsShieldFillCheck } from 'react-icons/bs'
 import elementClass from 'element-class'
 import './bag.css'
 import {useSelector, useDispatch} from 'react-redux'
@@ -69,7 +69,7 @@ const [id,setid] = useState('')
 
 function updateqty(e) {
     
-   if (e.keyCode == 13) {
+   if (e.keyCode === 13) {
     const Data ={
         id:id,
         qty: Number(qtyvalue)
@@ -131,7 +131,7 @@ useEffect(() => {
         }
     }
     
-}, [dispatch, user, state,userloading,isAuthentication,Alert, redirect ]);
+}, [dispatch, user, state, userloading, isAuthentication, Alert, redirect, state2]);
 
     return (
         <Fragment>
@@ -190,7 +190,7 @@ useEffect(() => {
                                
                                 <p className='pl-3 font1 font-bold mt-2'> <span className=''>Size:</span>  {e.product.size}  <span className='ml-10'>Qty:</span> 
                                 <input type="number" name="quantity" id="quantity" min='1' max={e.product.stock} defaultValue={e.qty} 
-                                className='active:border-none w-max'onChange={(f)=>(setQtyvalue(f.target.value) ,setid(e._id))} onKeyUp={(e)=>updateqty(e)}  /> <span className='text-[8px] ml-[-5px]'>&#9660;</span> </p>
+                                className='active:border-none w-max'onChange={(f)=>{setQtyvalue(f.target.value); setid(e._id)}} onKeyUp={(e)=>updateqty(e)}  /> <span className='text-[8px] ml-[-5px]'>&#9660;</span> </p>
                                
                                 <p className='mt-2'> <span className="font1 font-bold">&#8377; {Math.round(e.product.sellingPrice)}</span><span className="ml-2 line-through text-slate-400">&#8377; {e.product.mrp}</span><span className="ml-2 text-[#f26a10]">&#8377; {-Math.round(e.product.mrp - e.product.sellingPrice)} OFF</span> </p>
                                 <p className='text-[10px] font-bold'>Not returnable</p>

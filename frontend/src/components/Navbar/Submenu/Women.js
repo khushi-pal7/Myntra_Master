@@ -14,7 +14,6 @@ const Women = ({show, CMenu, parentCallback}) => {
     delay: 300,
     
   })
-  let H = window.innerHeight - 80
     
   return (
    <Fragment>

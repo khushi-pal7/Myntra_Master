@@ -27,7 +27,7 @@ const Mbeauty = ({ Mbeauty, fun1, fun2 }) => {
         </Ripples>
         {Topwear && Makeup.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 
@@ -38,18 +38,18 @@ const Mbeauty = ({ Mbeauty, fun1, fun2 }) => {
         </Ripples>
         {Indian && SkincareBathBody.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 
         <Ripples color="#fb56c1" className='w-full'>
-          <li className='text-[#282c3f]  pl-8 pr-5 py-4 relative w-full flex 'onClick={()=>(fun1(), fun2())}>
+          <li className='text-[#282c3f]  pl-8 pr-5 py-4 relative w-full flex 'onClick={() => { fun1(); fun2(); }}>
             <span className='float-left'>Baby&nbsp;Care</span>
           </li>
         </Ripples>
 
         <Ripples color="#fb56c1" className='w-full'>
-          <li className='text-[#282c3f]  pl-8 pr-5 py-4 relative w-full flex 'onClick={()=>(fun1(), fun2())}>
+          <li className='text-[#282c3f]  pl-8 pr-5 py-4 relative w-full flex 'onClick={() => { fun1(); fun2(); }}>
             <span className='float-left'>Masks</span>
           </li>
         </Ripples>
@@ -61,7 +61,7 @@ const Mbeauty = ({ Mbeauty, fun1, fun2 }) => {
         </Ripples>
         {Bottomwear && Haircare.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 
@@ -73,7 +73,7 @@ const Mbeauty = ({ Mbeauty, fun1, fun2 }) => {
         </Ripples>
         {Innerwear && Fragrances.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 
@@ -85,7 +85,7 @@ const Mbeauty = ({ Mbeauty, fun1, fun2 }) => {
         </Ripples>
         {Footwear && HairStraightener.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 
@@ -97,7 +97,7 @@ const Mbeauty = ({ Mbeauty, fun1, fun2 }) => {
         </Ripples>
         {Gadgets && MenGrooming.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 
@@ -109,18 +109,18 @@ const Mbeauty = ({ Mbeauty, fun1, fun2 }) => {
         </Ripples>
         {A && BeautyGiftMakeupSet.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 
         <Ripples color="#fb56c1" className='w-full'>
-          <li className='text-[#282c3f]  pl-8 pr-5 py-4 relative w-full flex 'onClick={()=>(fun1(), fun2())}>
+          <li className='text-[#282c3f]  pl-8 pr-5 py-4 relative w-full flex 'onClick={() => { fun1(); fun2(); }}>
             <span className='float-left'>Premium&nbsp;Beauty</span>
           </li>
         </Ripples>
 
         <Ripples color="#fb56c1" className='w-full'>
-          <li className='text-[#282c3f]  pl-8 pr-5 py-4 relative w-full flex 'onClick={()=>(fun1(), fun2())}>
+          <li className='text-[#282c3f]  pl-8 pr-5 py-4 relative w-full flex 'onClick={() => { fun1(); fun2(); }}>
             <span className='float-left'>Wellness&nbsp;&&nbsp;Hygiene</span>
           </li>
         </Ripples>
@@ -133,7 +133,7 @@ const Mbeauty = ({ Mbeauty, fun1, fun2 }) => {
         </Ripples>
         {Brand && BTopBrands.map((data) =>
           <Ripples color="#fb56c1" className='w-full'>
-            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={()=>(fun1(), fun2())}>{data.title}</li>
+            <li className='text-[#282c3f]  pl-12 pr-5 py-4 relative w-full flex'onClick={() => { fun1(); fun2(); }}>{data.title}</li>
           </Ripples>
         )}
 

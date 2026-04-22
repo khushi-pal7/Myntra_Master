@@ -1,4 +1,4 @@
-import React, { Fragment, CSSProperties, useState, useEffect } from 'react'
+import React, { Fragment, CSSProperties, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Carousel } from 'react-responsive-carousel'
 import './home.css'
@@ -273,7 +273,7 @@ import Footer from '../Footer/Footer'
 
 const Home = () => {
 
-  const indicatorStyles: CSSProperties = {
+  const indicatorStyles = {
     background: '#CFCECD',
     width: 7,
     height: 7,

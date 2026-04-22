@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react'
 import img from '../images/login.webp'
 import './Login.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { registermobile, clearErrors } from '../../action/useraction'
+import { registermobile } from '../../action/useraction'
 import { useNavigate } from 'react-router-dom'
 import {useAlert} from 'react-alert'
 
@@ -46,7 +46,7 @@ const Login = () => {
   }
   
   
-  }, [Redirect, Alert, message]);
+  }, [Redirect, Alert, message, user]);
 
   return (
 
