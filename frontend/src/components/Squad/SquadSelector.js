@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getwishlist, getbag } from '../../action/orderaction';
 
-const SquadSelector = ({ onShareProduct, onClose }) => {
+const SquadSelector = ({ onShareProduct, onClose, socket }) => {
     // Version: 1.0.5 - Guest Persistence & Real-time Sync
     const dispatch = useDispatch();
     console.log('SquadSelector: Mounted v1.0.5');

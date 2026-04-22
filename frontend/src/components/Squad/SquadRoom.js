@@ -19,6 +19,7 @@ const SquadRoom = () => {
 
     const [messageInput, setMessageInput] = useState('');
     const [socket, setSocket] = useState(null);
+    const [connected, setConnected] = useState(false);
 
     // Socket instance for real-time syncing
     useEffect(() => {
