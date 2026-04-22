@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { io } from 'socket.io-client';
@@ -25,7 +25,6 @@ const SquadRoom = () => {
     const [showSignup, setShowSignup] = useState(false);
     const [showAttach, setShowAttach] = useState(false);
     const [roomClosed, setRoomClosed] = useState(false);
-    const [connected, setConnected] = useState(false);
 
     const messagesEndRef = useRef(null);
     const typingTimeoutRef = useRef(null);
