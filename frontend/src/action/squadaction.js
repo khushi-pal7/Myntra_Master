@@ -225,6 +225,32 @@ export const shareSquadProduct = (roomCode, productId, sharedBy, sharedByName, s
     }
 };
 
+// ── Share Try On Result ───────────────────────────────────────────
+export const shareTryOnResult = (roomCode, productId, tryOnImageUrl, sharedBy, sharedByName, senderType) => async (dispatch) => {
+    try {
+        dispatch({ type: SHARE_PRODUCT_REQUEST });
+
+        const { data } = await axios.post('/api/v1/squad/share-try-on', {
+            roomCode,
+            productId,
+            tryOnImageUrl,
+            sharedBy,
+            sharedByName,
+            senderType
+        });
+
+        dispatch({
+            type: SHARE_PRODUCT_SUCCESS,
+            payload: data
+        });
+    } catch (error) {
+        dispatch({
+            type: SHARE_PRODUCT_FAIL,
+            payload: error.response?.data?.message || 'Failed to share try on result'
+        });
+    }
+};
+
 // ── Vote on Product ───────────────────────────────────────────────
 export const voteOnProduct = (roomCode, productId, oderId, voterName, vote) => async (dispatch) => {
     try {

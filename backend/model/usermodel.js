@@ -62,6 +62,10 @@ const usermodel = new mongoose.Schema({
    TOA:{
        type:String
    },
+   fitProfilePhoto: {
+       type: String,
+       default: ""
+   },
    // Friends-related fields
    selectedContacts: [{
        type: mongoose.Schema.Types.ObjectId,

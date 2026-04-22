@@ -301,7 +301,7 @@ const SquadRoom = () => {
                 {/* Messages */}
                 <div className="squad-messages">
                     {messages && messages.map((msg, idx) => {
-                        if (msg.messageType === 'product_share') {
+                        if (msg.messageType === 'product_share' || msg.messageType === 'try_on_share') {
                             // Find the shared product data
                             const sp = room.sharedProducts?.find(
                                 s => s.productId?._id === msg.productId || s.productId === msg.productId
@@ -311,12 +311,12 @@ const SquadRoom = () => {
                                     <div key={msg._id || idx} className={`squad-message-wrapper ${msg.senderId === currentUserId ? 'own' : 'other'}`}>
                                         {msg.senderId !== currentUserId && (
                                             <div className="squad-message-sender">
-                                                {msg.senderName} shared a product
+                                                {msg.senderName} {msg.messageType === 'try_on_share' ? 'tried on a product' : 'shared a product'}
                                             </div>
                                         )}
                                         {msg.senderId === currentUserId && (
                                             <div className="squad-message-sender" style={{ textAlign: 'right' }}>
-                                                You shared a product
+                                                {msg.messageType === 'try_on_share' ? 'You tried on a product' : 'You shared a product'}
                                             </div>
                                         )}
                                         <SquadProductCard
@@ -326,6 +326,7 @@ const SquadRoom = () => {
                                             currentUserName={currentUserName}
                                             isGuest={isGuest}
                                             onAddToCart={() => setShowSignup(true)}
+                                            tryOnImageUrl={msg.tryOnImageUrl}
                                         />
                                     </div>
                                 );

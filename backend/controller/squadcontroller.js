@@ -305,6 +305,55 @@ exports.shareProduct = A(async (req, res, next) => {
     });
 });
 
+// ── Share a Try On result ─────────────────────────────────────────
+exports.shareTryOn = A(async (req, res, next) => {
+    const { roomCode, productId, tryOnImageUrl, sharedBy, sharedByName } = req.body;
+
+    const room = await SquadRoom.findOne({ roomCode, isActive: true });
+    if (!room) {
+        return next(new Errorhandler('Room not found', 404));
+    }
+
+    const product = await Product.findById(productId);
+    if (!product) {
+        return next(new Errorhandler('Product not found', 404));
+    }
+
+    // Add to shared products (if not already shared as a normal product)
+    const alreadyShared = room.sharedProducts.find(sp => sp.productId.toString() === productId);
+    if (!alreadyShared) {
+        room.sharedProducts.push({
+            productId,
+            sharedBy,
+            sharedByName,
+            sharedAt: Date.now(),
+            votes: [],
+            reactions: []
+        });
+        await room.save();
+    }
+
+    // Create try_on_share message
+    const message = await SquadMessage.create({
+        roomCode,
+        senderId: sharedBy,
+        senderName: sharedByName,
+        senderType: req.body.senderType || 'user',
+        messageType: 'try_on_share',
+        content: `${sharedByName} tried on ${product.brand} - ${product.title}`,
+        productId,
+        tryOnImageUrl
+    });
+
+    const populatedMessage = await SquadMessage.findById(message._id).populate('productId');
+
+    res.status(200).json({
+        success: true,
+        message: populatedMessage,
+        product
+    });
+});
+
 // ── Vote on a shared product ──────────────────────────────────────
 exports.voteOnProduct = A(async (req, res, next) => {
     const { roomCode, productId, oderId, voterName, vote } = req.body;

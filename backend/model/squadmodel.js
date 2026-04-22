@@ -51,10 +51,14 @@ const squadMessageSchema = new mongoose.Schema({
     },
     messageType: {
         type: String,
-        enum: ['text', 'product_share', 'system'],
+        enum: ['text', 'product_share', 'system', 'try_on_share'],
         default: 'text'
     },
     content: {
+        type: String,
+        default: ''
+    },
+    tryOnImageUrl: {
         type: String,
         default: ''
     },

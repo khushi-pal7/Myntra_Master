@@ -35,7 +35,7 @@ export const createwishlist = (option) => async (dispatch) => {
         
         // Broadcast update via socket if available
         if (window.squadSocket) {
-            window.squadSocket.emit('wishlist_updated');
+            window.squadSocket.emit('wishlist:updated');
         }
         
         // Auto-refresh the wishlist state
@@ -70,7 +70,7 @@ export const createbag = (option) => async (dispatch) => {
         
         // Broadcast update via socket if available
         if (window.squadSocket) {
-            window.squadSocket.emit('bag_updated');
+            window.squadSocket.emit('bag:updated');
         }
         
         // Auto-refresh the bag state

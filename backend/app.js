@@ -8,6 +8,7 @@ const Order = require('./routes/orderroutes')
 const Friends = require('./routes/friendsroutes')
 const Reviews = require('./routes/reviewroutes')
 const Squad = require('./routes/squadroutes')
+const TryOn = require('./routes/TryOnRoute')
 const errorMiddleware = require('./Middelwares/error');
 const path = require("path");
 const cors = require('cors');
@@ -25,6 +26,7 @@ app.use(cors({
 app.use(express.json())
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({extended:true}))
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 app.use('/api/v1', User)
 app.use('/api/v1', Product)
@@ -32,6 +34,7 @@ app.use('/api/v1', Order)
 app.use('/api/v1/friends', Friends)
 app.use('/api/v1/reviews', Reviews)
 app.use('/api/v1/squad', Squad)
+app.use('/api/v1/try-on', TryOn)
 
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 

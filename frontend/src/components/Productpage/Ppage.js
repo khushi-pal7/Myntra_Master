@@ -16,6 +16,7 @@ import {getuser} from '../../action/useraction'
 import {createbag, createwishlist, clearErrors} from '../../action/orderaction'
 import Reviews from '../Reviews/Reviews'
 import Footer from '../Footer/Footer'
+import TryOnResultModal from './TryOnResultModal'
 
 const ProductPage = () => {
   const param = useParams()
@@ -26,6 +27,7 @@ const ProductPage = () => {
   const {error, bag} = useSelector(state => state.bag)
   const {error:werror} = useSelector(state => state.wishlist)
   const [img, setimg] = useState('')
+  const [showTryOn, setShowTryOn] = useState(false)
   function Addclass() {
     var foo1 = document.querySelector(`.imgfulldiv`)
     elementClass(foo1).add('visible')
@@ -136,8 +138,28 @@ const ProductPage = () => {
                   <h1 className='font1 text-base font-semibold mt-8 mb-6'>SELECT SIZE</h1>
                   <button className='px-6 py-3 rounded-[35px] font1 text-sm font-semibold text-[#ff3f6c] border-[1px] border-[#ff3f6c]'>{product.size}</button>
                   <br />
-                  <button className="font1 w-60 font-semibold text-base py-4 px-12 inline-flex items-center justify-center bg-[#ff3f6c] text-white mr-6  mt-4 rounded-md hover:bg-[#f64871]" onClick={addtobag}><BsHandbag className='mr-4' /> <span>ADD TO BAG</span></button>
+                  <button className="font1 w-60 font-semibold text-base py-4 px-12 inline-flex items-center justify-center bg-[#ff3f6c] text-white mr-6 mt-4 rounded-md hover:bg-[#f64871]" onClick={addtobag}><BsHandbag className='mr-4' /> <span>ADD TO BAG</span></button>
+                  <button 
+                    className="font1 font-semibold text-base py-4 px-8 inline-flex items-center justify-center border-[1px] border-[#ff3f6c] text-[#ff3f6c] mt-4 rounded-md hover:bg-pink-50 transition-colors mr-6" 
+                    onClick={() => {
+                        if (!isAuthentication) {
+                            alert.info("Please login to use Try It On");
+                            return;
+                        }
+                        if (!user?.fitProfilePhoto) {
+                            if (window.confirm("Please upload your photo in My Fit Profile to use Try It On. Go there now?")) {
+                                window.location.href = "/dashboard/fit-profile";
+                            }
+                        } else {
+                            setShowTryOn(true);
+                        }
+                    }}
+                  >
+                    <span>✨ TRY IT ON</span>
+                  </button>
                   <button className="font1 font-semibold text-base py-4 px-8 inline-flex items-center justify-center border-[1px] border-slate-300 mt-4 rounded-md hover:border-[1px] hover:border-slate-900"onClick={addtowishlist}><BsHeart className='mr-4' /><span>WISHLIST</span></button>
+
+                  {showTryOn && <TryOnResultModal product={product} onClose={() => setShowTryOn(false)} />}
 
                 </div>
                 <div className='border-b-[1px] border-slate-200  pb-6 pt-4'>

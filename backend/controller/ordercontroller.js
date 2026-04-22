@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken')
 const A = require('../Middelwares/resolveandcatch')
 const Order = require('../model/ordermodel')
 const Wishlist = require('../model/wishlist')
@@ -37,7 +38,21 @@ exports.createwishlist = A(async (req, res, next) => {
 })
 
 exports.getwishlist = A(async (req, res, next) => {
-    const id = req.params.id;
+    let id = req.params.id;
+    
+    // Senior Engineer Fix: Prioritize authenticated user ID from token if available
+    const token = req.cookies?.token;
+    if (token) {
+      try {
+        const decoded = jwt.verify(token, process.env.SECRETID);
+        if (decoded && decoded.id) {
+          id = decoded.id;
+        }
+      } catch (error) {
+        console.error("Wishlist Token verification failed:", error.message);
+      }
+    }
+
     // Senior Engineer Tip: Check both user and guestId fields for the given ID
     const wishlist = await Wishlist.findOne({
       $or: [{ user: id }, { guestId: id }]
@@ -75,7 +90,21 @@ exports.createbag = A(async (req, res, next) => {
 })
 
  exports.getbag = A(async (req, res, next) => {
-  const id = req.params.id;
+  let id = req.params.id;
+
+  // Senior Engineer Fix: Prioritize authenticated user ID from token if available
+  const token = req.cookies?.token;
+  if (token) {
+    try {
+      const decoded = jwt.verify(token, process.env.SECRETID);
+      if (decoded && decoded.id) {
+        id = decoded.id;
+      }
+    } catch (error) {
+      console.error("Bag Token verification failed:", error.message);
+    }
+  }
+
   const bag = await Bag.findOne({
     $or: [{ user: id }, { guestId: id }]
   }).populate('orderItems.product')

@@ -13,6 +13,7 @@ import Overview from "./components/Login/Dashboard/overview";
 import Allproductpage from "./components/Product/Allproduct";
 import Ppage from "./components/Productpage/Ppage";
 import MPpage from "./components/Productpage/MPpage";
+import MyFitProfile from "./components/Login/Dashboard/MyFitProfile";
 // import Footer from "./components/Footer/Footer";
 import Coupon from "./components/Coupon/Coupon";
 import Wishlist from "./components/Wishlist/Wishlist";
@@ -75,6 +76,7 @@ function App() {
         <Route path="/verifying" element={<Otpverify/>}/>
         <Route path='/registeruser' element={<Registeruser/>}/>
         {loading === false && (isAuthentication && <Route path='/dashboard' element={<Overview user={user}/>}/>)}
+        {loading === false && (isAuthentication && <Route path='/dashboard/fit-profile' element={<MyFitProfile user={user}/>}/>)}
         {loading === false && (isAuthentication === false &&<Route path="/dashboard" element={<Navigate to="/" />} />)}
         <Route path='/products' element={<Allproductpage/>}/>
        {window.screen.width > 1024 && <Route path='/products/:id' element={ <Ppage/>}/>}

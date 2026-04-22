@@ -4,7 +4,7 @@ import { voteOnProduct, reactToProduct } from '../../action/squadaction';
 
 const EMOJIS = ['❤️', '🔥', '😍', '👎', '🤔', '💰'];
 
-const SquadProductCard = ({ sharedProduct, roomCode, currentUserId, currentUserName, isGuest, onAddToCart }) => {
+const SquadProductCard = ({ sharedProduct, roomCode, currentUserId, currentUserName, isGuest, onAddToCart, tryOnImageUrl }) => {
     const dispatch = useDispatch();
     const [showSignup, setShowSignup] = useState(false);
     const product = sharedProduct.productId;
@@ -39,9 +39,11 @@ const SquadProductCard = ({ sharedProduct, roomCode, currentUserId, currentUserN
         }
     };
 
-    const imgUrl = product.images && product.images.length > 0
-        ? product.images[0].url
-        : 'https://via.placeholder.com/300x200?text=No+Image';
+    const imgUrl = tryOnImageUrl 
+        ? (tryOnImageUrl.startsWith('http') ? tryOnImageUrl : `http://localhost:4000${tryOnImageUrl}`)
+        : (product.images && product.images.length > 0
+            ? product.images[0].url
+            : 'https://via.placeholder.com/300x200?text=No+Image');
 
     // Count reactions by emoji
     const reactionCounts = {};

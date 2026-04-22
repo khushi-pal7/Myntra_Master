@@ -9,6 +9,7 @@ const {
     joinRoomAsUser,
     sendInvite,
     shareProduct,
+    shareTryOn,
     voteOnProduct,
     reactToProduct,
     closeRoom,
@@ -22,6 +23,7 @@ route.get('/rooms', isAuthenticateuser, getMyRooms);
 route.get('/room/:roomCode', getRoomDetails);
 route.post('/invite', isAuthenticateuser, sendInvite);
 route.post('/share-product', shareProduct);
+route.post('/share-try-on', shareTryOn);
 route.post('/vote', voteOnProduct);
 route.post('/react', reactToProduct);
 route.delete('/room/:roomCode', isAuthenticateuser, closeRoom);
