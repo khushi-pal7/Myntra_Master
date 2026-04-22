@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getwishlist, getbag } from '../../action/orderaction';
 
 const SquadSelector = ({ onShareProduct, onClose }) => {
-    // Version: 1.0.4 - Build Fix & Robust Sync
+    // Version: 1.0.5 - Guest Persistence & Real-time Sync
     const dispatch = useDispatch();
-    console.log('SquadSelector: Mounted v1.0.4');
+    console.log('SquadSelector: Mounted v1.0.5');
     const [activeTab, setActiveTab] = useState('wishlist');
     
     const { user, isAuthentication } = useSelector(state => state.user);
@@ -17,18 +17,39 @@ const SquadSelector = ({ onShareProduct, onClose }) => {
     const { bag, loading: bagLoading } = bagState;
 
     useEffect(() => {
-        // Senior Engineer Tip: Use direct ID presence as the primary trigger, 
-        // fallback to isAuthentication only as a secondary guard.
-        const userId = user?._id;
+        // Senior Engineer Tip: Unified ID detection for multi-tab durability
+        const globalGuestId = localStorage.getItem('squad_guest_id_global');
+        const identifier = user?._id || globalGuestId;
         
-        if (userId) {
-            console.log(`Squad Room: Fetching items for user ${userId}`);
-            dispatch(getwishlist(userId));
-            dispatch(getbag(userId));
-        } else {
-            console.warn('Squad Room: No user ID found for fetching wishlist/bag');
+        if (identifier) {
+            console.log(`Squad Room: Fetching items for identity ${identifier}`);
+            dispatch(getwishlist(identifier));
+            dispatch(getbag(identifier));
         }
-    }, [dispatch, user, isAuthentication]);
+    }, [dispatch, user]);
+
+    // Real-time synchronization listener
+    useEffect(() => {
+        if (!socket) return;
+
+        const handleSync = () => {
+            const globalGuestId = localStorage.getItem('squad_guest_id_global');
+            const identifier = user?._id || globalGuestId;
+            if (identifier) {
+                console.log('Squad Selector: Received real-time sync event, refreshing data');
+                dispatch(getwishlist(identifier));
+                dispatch(getbag(identifier));
+            }
+        };
+
+        socket.on('wishlist_updated', handleSync);
+        socket.on('bag_updated', handleSync);
+
+        return () => {
+            socket.off('wishlist_updated', handleSync);
+            socket.off('bag_updated', handleSync);
+        };
+    }, [socket, user, dispatch]);
 
     // Robust extraction logic
     const extractProducts = useMemo(() => (source) => {

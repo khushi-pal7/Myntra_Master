@@ -36,44 +36,35 @@ const ProductPage = () => {
   }
 
   function addtobag() {
-    if (user) {
+    const guestId = localStorage.getItem('squad_guest_id_global') || `guest_${Math.random().toString(36).substr(2, 9)}`;
+    if (!localStorage.getItem('squad_guest_id_global')) localStorage.setItem('squad_guest_id_global', guestId);
 
-      const option ={
-         user:user._id,
-         orderItems:[
-           {product:param.id, qty:1}
-         ]
-        
-       }
-     
-       dispatch(createbag(option))
-       
-      alert.success('Product added successfully in Bag')
+    const option = user ? {
+      user: user._id,
+      orderItems: [{ product: param.id, qty: 1 }]
+    } : {
+      guestId: guestId,
+      orderItems: [{ product: param.id, qty: 1 }]
+    };
 
-     }else{
-       alert.show('You have To Login To Add This Product Into Bag')
-     }
+    dispatch(createbag(option))
+    alert.success('Product added successfully in Bag')
   }
 
   function addtowishlist() {
-    if (user) {
+    const guestId = localStorage.getItem('squad_guest_id_global') || `guest_${Math.random().toString(36).substr(2, 9)}`;
+    if (!localStorage.getItem('squad_guest_id_global')) localStorage.setItem('squad_guest_id_global', guestId);
 
-     const option ={
-        user:user._id,
-        orderItems:[
-          {product:param.id}
-        ]
-       
-      }
-      console.log(option)
-      dispatch(createwishlist(option))
+    const option = user ? {
+      user: user._id,
+      orderItems: [{ product: param.id }]
+    } : {
+      guestId: guestId,
+      orderItems: [{ product: param.id }]
+    };
 
-        alert.success('Product added successfully in wishlist')
-      
-      
-    }else{
-      alert.show('You have To Login To Add This Product Into Wishlist')
-    }
+    dispatch(createwishlist(option))
+    alert.success('Product added successfully in wishlist')
   }
 
   const [state, setstate] = useState(false)

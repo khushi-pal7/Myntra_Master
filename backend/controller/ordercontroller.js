@@ -12,96 +12,79 @@ exports.createorder = A(async (req, res, next) => {
   })
 
 exports.createwishlist = A(async (req, res, next) => {
-   const {user, orderItems} = req.body
-   const Finduser = await Wishlist.find({user: user})
-    if (Finduser.length !== 0 ) {
-      const product = await Wishlist.find({user:user})
-      function f (data){
-        return data.product ==  orderItems[0].product
-      }
-      if (product[0].orderItems.filter(f).length > 0) {
-     
-        return next(new Errorhandler("Product all ready added in Wishlist", 404));
-      }else{
-        await Wishlist.updateOne({user: user}, {$push:{
-          orderItems: [orderItems[0]]
-        }})
+   const {user, guestId, orderItems} = req.body
+   
+   // Identify if it's a registered user or a guest
+   const query = user ? { user: user } : { guestId: guestId };
+   
+   const Finduser = await Wishlist.findOne(query)
+    if (Finduser) {
+      const product = Finduser.orderItems.find(item => item.product.toString() === orderItems[0].product.toString());
       
+      if (product) {
+        return next(new Errorhandler("Product already added in Wishlist", 400));
+      } else {
+        await Wishlist.updateOne(query, { $push: { orderItems: [orderItems[0]] } })
       }
       
-    }else{
-       console.log('else')
-      const wishlist = await Wishlist.create(req.body)
-
+    } else {
+      await Wishlist.create({ ...req.body, ...query })
     }
     
     res.status(200).json({
-      success:true,
-      
-  })
-  
-  })
+      success: true,
+    })
+})
 
 exports.getwishlist = A(async (req, res, next) => {
-    
-    const wishlist = await Wishlist.findOne({user: req.params.id}).populate('orderItems.product')
+    const id = req.params.id;
+    // Senior Engineer Tip: Check both user and guestId fields for the given ID
+    const wishlist = await Wishlist.findOne({
+      $or: [{ user: id }, { guestId: id }]
+    }).populate('orderItems.product');
 
     res.status(200).json({
-      success:true,
+      success: true,
       wishlist,
       items: wishlist ? wishlist.orderItems : []
-  })
-  
+    })
 })
 
 exports.createbag = A(async (req, res, next) => {
-  // console.log(req.body)
-  const {user, orderItems} = req.body
-  console.log(orderItems)
-  const Finduser = await Bag.find({user: user})
-   if (Finduser.length !== 0 ) {
-    
-    const product = await Bag.find({user:user})
-    function f (data){
-      return data.product ==  orderItems[0].product
-    }
-    
-    if ( product[0].orderItems.filter(f).length > 0 ) {
-
-      return next(new Errorhandler("Product all ready added in Bag", 404));
-
-    }else{
-
-      await Bag.updateOne({user: user}, {$push:{
-        orderItems: [orderItems[0]]
-      }})
-    
-    }
-     
-   }else{
-
-     await Bag.create(req.body)
-
-   }
-   
-   res.status(200).json({
-     success:true,
-     
- })
- 
- })
-
- exports.getbag = A(async (req, res, next) => {
-    
-  const bag = await Bag.findOne({user: req.params.id}).populate('orderItems.product')
-
+  const {user, guestId, orderItems} = req.body
+  const query = user ? { user: user } : { guestId: guestId };
   
+  const FindBag = await Bag.findOne(query)
+  
+  if (FindBag) {
+    const product = FindBag.orderItems.find(item => item.product.toString() === orderItems[0].product.toString());
+    
+    if (product) {
+      return next(new Errorhandler("Product already added in Bag", 400));
+    } else {
+      await Bag.updateOne(query, { $push: { orderItems: [orderItems[0]] } })
+    }
+     
+  } else {
+    await Bag.create({ ...req.body, ...query })
+  }
+   
   res.status(200).json({
-    success:true,
-    bag,
-    items: bag ? bag.orderItems : []
+    success: true,
+  })
 })
 
+ exports.getbag = A(async (req, res, next) => {
+  const id = req.params.id;
+  const bag = await Bag.findOne({
+    $or: [{ user: id }, { guestId: id }]
+  }).populate('orderItems.product')
+
+  res.status(200).json({
+    success: true,
+    bag,
+    items: bag ? bag.orderItems : []
+  })
 })
 
 exports.updateqtybag = A(async (req, res, next) => {

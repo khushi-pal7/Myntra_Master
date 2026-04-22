@@ -19,6 +19,16 @@ const SquadRoom = () => {
 
     const [messageInput, setMessageInput] = useState('');
     const [socket, setSocket] = useState(null);
+
+    // Socket instance for real-time syncing
+    useEffect(() => {
+        if (socket) {
+            window.squadSocket = socket;
+        }
+        return () => {
+            delete window.squadSocket;
+        };
+    }, [socket]);
     const [onlineMembers, setOnlineMembers] = useState([]);
     const [typingUsers, setTypingUsers] = useState([]);
     const [showInvite, setShowInvite] = useState(false);
@@ -347,6 +357,7 @@ const SquadRoom = () => {
                     <SquadSelector
                         onShareProduct={handleShareProduct}
                         onClose={() => setShowAttach(false)}
+                        socket={socket}
                     />
                 )}
 

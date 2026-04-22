@@ -25,25 +25,31 @@ REQUEST_UPDATE_QTY_BAG,
 } from '../const/orderconst'
 
 export const createwishlist = (option) => async (dispatch) => {
-    console.log(option)
     try {
-
         dispatch({ type: REQUEST_CREATE_WISHLIST })
         const config = { headers: { "Content-Type": "application/json" } }
 
         const { data } = await axios.post(`/api/v1/create_wishlist`, option, config)
 
         dispatch({ type: SUCCESS_CREATE_WISHLIST, payload: data.success,})
+        
+        // Broadcast update via socket if available
+        if (window.squadSocket) {
+            window.squadSocket.emit('wishlist_updated');
+        }
+        
+        // Auto-refresh the wishlist state
+        const identifier = option.user || option.guestId;
+        if (identifier) {
+            dispatch(getwishlist(identifier));
+        }
 
     } catch (error) {
-
         dispatch({ type: FAIL_CREATE_WISHLIST, payload: error.response?.data?.message || error.message })
-
     }
 }
 
 export const getwishlist = (userid) => async (dispatch) => {
-
     try {
         dispatch({ type: REQUEST_GET_WISHLIST })
         const { data } = await axios.get(`/api/v1/get_wishlist/${userid}`)
@@ -54,25 +60,31 @@ export const getwishlist = (userid) => async (dispatch) => {
 }
 
 export const createbag = (option) => async (dispatch) => {
-    console.log(option)
     try {
-
         dispatch({ type: REQUEST_CREATE_BAG })
         const config = { headers: { "Content-Type": "application/json" } }
 
         const { data } = await axios.post(`/api/v1/create_bag`, option, config)
 
         dispatch({ type: SUCCESS_CREATE_BAG, payload: data.success,})
+        
+        // Broadcast update via socket if available
+        if (window.squadSocket) {
+            window.squadSocket.emit('bag_updated');
+        }
+        
+        // Auto-refresh the bag state
+        const identifier = option.user || option.guestId;
+        if (identifier) {
+            dispatch(getbag(identifier));
+        }
 
     } catch (error) {
-
         dispatch({ type: FAIL_CREATE_BAG, payload: error.response?.data?.message || error.message })
-
     }
 }
 
 export const getbag = (userid) => async (dispatch) => {
-
     try {
         dispatch({ type: REQUEST_GET_BAG })
         const { data } = await axios.get(`/api/v1/bag/${userid}`)

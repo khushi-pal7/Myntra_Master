@@ -4,7 +4,11 @@ const wishlist = new mongoose.Schema({
     user:{
         type:mongoose.ObjectId,
         ref:"MynUser",
-        required:true
+        required:false
+    },
+    guestId: {
+        type: String,
+        index: true
     },
     orderItems: [
     {
