@@ -5,6 +5,7 @@ const route = express.Router();
 route.post('/create_order', createorder)
 route.post('/create_wishlist', createwishlist)
 route.get('/get_wishlist/:id', getwishlist)
+route.get('/wishlist/:id', getwishlist)
 route.post('/create_bag', createbag)
 route.get('/bag/:id', getbag)
 route.put('/update_bag', updateqtybag)

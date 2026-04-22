@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getwishlist, getbag } from '../../action/orderaction';
 
 const SquadAttachPanel = ({ onShareProduct, onClose }) => {
+    // Version: 1.0.2 - Robust Sync Fix
     const dispatch = useDispatch();
+    console.log('SquadAttachPanel: Mounted v1.0.2');
     const [activeTab, setActiveTab] = useState('wishlist');
     
     const { user, isAuthentication } = useSelector(state => state.user);
