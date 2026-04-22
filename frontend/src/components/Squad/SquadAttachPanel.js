@@ -15,19 +15,12 @@ const SquadAttachPanel = ({ onShareProduct, onClose }) => {
             setLoading(true);
             try {
                 // Fetch wishlist
-                const wishRes = await axios.get(`/api/v1/wishlist/${user?._id}`);
+                const wishRes = await axios.get(`/api/v1/get_wishlist/${user?._id}`);
                 if (wishRes.data.success && wishRes.data.wishlist) {
-                    const products = await Promise.all(
-                        wishRes.data.wishlist.map(async (item) => {
-                            try {
-                                const pRes = await axios.get(`/api/v1/squad/resolve-product/${item.productid}`);
-                                return pRes.data.product;
-                            } catch {
-                                return null;
-                            }
-                        })
-                    );
-                    setWishlistProducts(products.filter(Boolean));
+                    const products = wishRes.data.wishlist.orderItems
+                        .map(item => item.product)
+                        .filter(product => product && product._id);
+                    setWishlistProducts(products);
                 }
             } catch (err) {
                 console.log('Wishlist fetch:', err.message);
@@ -37,17 +30,10 @@ const SquadAttachPanel = ({ onShareProduct, onClose }) => {
                 // Fetch bag
                 const bagRes = await axios.get(`/api/v1/bag/${user?._id}`);
                 if (bagRes.data.success && bagRes.data.bag) {
-                    const products = await Promise.all(
-                        bagRes.data.bag.map(async (item) => {
-                            try {
-                                const pRes = await axios.get(`/api/v1/squad/resolve-product/${item.productid}`);
-                                return pRes.data.product;
-                            } catch {
-                                return null;
-                            }
-                        })
-                    );
-                    setBagProducts(products.filter(Boolean));
+                    const products = bagRes.data.bag.orderItems
+                        .map(item => item.product)
+                        .filter(product => product && product._id);
+                    setBagProducts(products);
                 }
             } catch (err) {
                 console.log('Bag fetch:', err.message);
