@@ -1,55 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { getwishlist, getbag } from '../../action/orderaction';
 
 const SquadAttachPanel = ({ onShareProduct, onClose }) => {
+    const dispatch = useDispatch();
     const [activeTab, setActiveTab] = useState('wishlist');
-    const [wishlistProducts, setWishlistProducts] = useState([]);
-    const [bagProducts, setBagProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-
+    
     const { user, isAuthentication } = useSelector(state => state.user);
+    const { wishlist, loading: wishLoading } = useSelector(state => state.wishlist_data);
+    const { bag, loading: bagLoading } = useSelector(state => state.bag_data);
 
     useEffect(() => {
-        const fetchData = async () => {
-            if (!isAuthentication || !user?._id) {
-                setLoading(false);
-                return;
-            }
+        if (isAuthentication && user?._id) {
+            dispatch(getwishlist(user._id));
+            dispatch(getbag(user._id));
+        }
+    }, [dispatch, user, isAuthentication]);
 
-            setLoading(true);
-            try {
-                // Fetch wishlist
-                const wishRes = await axios.get(`/api/v1/get_wishlist/${user._id}`);
-                console.log('Squad Wishlist Response:', wishRes.data);
-                if (wishRes.data.success && wishRes.data.wishlist) {
-                    const products = (wishRes.data.wishlist.orderItems || [])
-                        .map(item => item.product)
-                        .filter(product => product && product._id);
-                    setWishlistProducts(products);
-                }
-            } catch (err) {
-                console.log('Wishlist fetch error:', err.response?.data?.message || err.message);
-            }
+    const getProductsFromOrderItems = (source) => {
+        if (!source || !source.orderItems) return [];
+        return source.orderItems
+            .map(item => item.product)
+            .filter(product => product && product._id);
+    };
 
-            try {
-                // Fetch bag
-                const bagRes = await axios.get(`/api/v1/bag/${user._id}`);
-                console.log('Squad Bag Response:', bagRes.data);
-                if (bagRes.data.success && bagRes.data.bag) {
-                    const products = (bagRes.data.bag.orderItems || [])
-                        .map(item => item.product)
-                        .filter(product => product && product._id);
-                    setBagProducts(products);
-                }
-            } catch (err) {
-                console.log('Bag fetch error:', err.response?.data?.message || err.message);
-            }
-            setLoading(false);
-        };
-
-        fetchData();
-    }, [user, isAuthentication]);
+    const wishlistProducts = getProductsFromOrderItems(wishlist);
+    const bagProducts = getProductsFromOrderItems(bag);
+    const loading = wishLoading || bagLoading;
 
     const items = activeTab === 'wishlist' ? wishlistProducts : bagProducts;
 
