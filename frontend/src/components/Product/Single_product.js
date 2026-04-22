@@ -10,11 +10,11 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 const SingleProduct = ({ pro }) => {
 
 
-    let slideIndex = 1;
+    const slideIndexRef = React.useRef(1);
 
     const currentSlide = (n) => {
-
-        showSlides(slideIndex = n);
+        slideIndexRef.current = n;
+        showSlides(n);
     }
 
     const showSlides = useCallback((n) => {
@@ -28,8 +28,10 @@ const SingleProduct = ({ pro }) => {
         // Early return if no slides found
         if (slides.length === 0) return;
 
-        if (n > slides.length) { slideIndex = 1 }
-        if (n < 1) { slideIndex = slides.length }
+        if (n > slides.length) { slideIndexRef.current = 1 }
+        if (n < 1) { slideIndexRef.current = slides.length }
+        
+        const currentIdx = slideIndexRef.current;
         
         for (i = 0; i < slides.length; i++) {
             if (slides[i] && slides[i].style) {
@@ -44,13 +46,13 @@ const SingleProduct = ({ pro }) => {
         }
 
         // Check if the target slide exists before accessing its style
-        if (slides[slideIndex - 1] && slides[slideIndex - 1].style) {
-            slides[slideIndex - 1].style.display = "block";
+        if (slides[currentIdx - 1] && slides[currentIdx - 1].style) {
+            slides[currentIdx - 1].style.display = "block";
         }
         
         // Check if the target dot exists before accessing its className
-        if (dots[slideIndex - 1] && dots[slideIndex - 1].className !== undefined) {
-            dots[slideIndex - 1].className += " active";
+        if (dots[currentIdx - 1] && dots[currentIdx - 1].className !== undefined) {
+            dots[currentIdx - 1].className += " active";
         }
     }, [pro]);
 
@@ -94,9 +96,9 @@ const SingleProduct = ({ pro }) => {
     useEffect(() => {
         // Only call showSlides if pro and style_no are available
         if (pro && pro.style_no) {
-            showSlides(slideIndex);
+            showSlides(slideIndexRef.current);
         }
-    }, [pro, slideIndex, showSlides]);
+    }, [pro, showSlides]);
 
     return (
         <Fragment>

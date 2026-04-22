@@ -8,7 +8,7 @@ const SquadLanding = () => {
     const navigate = useNavigate();
     const [roomName, setRoomName] = useState('');
 
-    const { isAuthentication, user } = useSelector(state => state.user);
+    const { isAuthentication } = useSelector(state => state.user);
     const { rooms, loading: roomsLoading } = useSelector(state => state.squadRooms);
     const { room: createdRoom, loading: creating, success } = useSelector(state => state.createSquadRoom);
 

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useRef } from 'react'
 import './MNavbar.css'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { FiSearch } from 'react-icons/fi'
@@ -29,6 +29,8 @@ const MNavbar = ({ user }) => {
     const dispatch = useDispatch()
     const redirect = useNavigate()
     const alert = useAlert()
+    const slideIndexRef = useRef(1);
+    console.log('ProductPage: slideIndexRef initialized');
     const [show, setShow] = useState(false);
     const [Class, setClass] = useState("hidden");
     const [Menul, setMenul] = useState("hidden");
@@ -289,21 +291,21 @@ const MNavbar = ({ user }) => {
                                     </Ripples>
                                     <MWoMen WoMen={Menu2} fun1={handleClose} fun2={classunchange} />
                                     <Ripples color="#fb56c1" className='w-full'>
-                                        <li className='text-[#282c3f] font1 px-5 py-4 relative w-full flex ' onClick={() => (setKids(Kids ? (false) : (true)), setMenu3(Menu3 === "hidden" ? "block" : "hidden"))}>
+                                        <li className='text-[#282c3f] font1 px-5 py-4 relative w-full flex ' onClick={() => { setKids(Kids ? false : true); setMenu3(Menu3 === "hidden" ? "block" : "hidden"); }}>
                                             <span className='float-left'>Kids</span>
                                             <span className='absolute mx-5 right-0'>{Kids ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>
                                         </li>
                                     </Ripples>
                                     <MKids MKids={Menu3} fun1={handleClose} fun2={classunchange} />
                                     <Ripples color="#fb56c1" className='w-full'>
-                                        <li className='text-[#282c3f] font1 px-5 py-4 relative w-full flex ' onClick={() => (setHome(Home ? (false) : (true)), setMenu4(Menu4 === "hidden" ? "block" : "hidden"))}>
+                                        <li className='text-[#282c3f] font1 px-5 py-4 relative w-full flex ' onClick={() => { setHome(Home ? false : true); setMenu4(Menu4 === "hidden" ? "block" : "hidden"); }}>
                                             <span className='float-left'>Home&nbsp;&&nbsp;Living</span>
                                             <span className='absolute mx-5 right-0'>{Home ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>
                                         </li>
                                     </Ripples>
                                     <Mhome Mhome={Menu4} fun1={handleClose} fun2={classunchange}/>
                                     <Ripples color="#fb56c1" className='w-full'>
-                                        <li className='text-[#282c3f] font1 px-5 py-4 relative w-full flex ' onClick={() => (setBeauty(Beauty ? (false) : (true)), setMenu5(Menu5 === "hidden" ? "block" : "hidden"))}>
+                                        <li className='text-[#282c3f] font1 px-5 py-4 relative w-full flex ' onClick={() => { setBeauty(Beauty ? false : true); setMenu5(Menu5 === "hidden" ? "block" : "hidden"); }}>
                                             <span className='float-left'>Beauty</span>
                                             <span className='absolute mx-5 right-0'>{Beauty ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>
                                         </li>
@@ -328,7 +330,7 @@ const MNavbar = ({ user }) => {
                     )}
                 </div>
 
-                <div className='h-[100vh] bg-[#64646435] w-auto ' onClick={() => (loginClose(), loginunchange())}></div>
+                <div className='h-[100vh] bg-[#64646435] w-auto ' onClick={() => { loginClose(); loginunchange(); }}></div>
             </div>
 
 

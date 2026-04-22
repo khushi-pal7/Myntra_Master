@@ -309,10 +309,10 @@ console.log(MMainlink)
             {document.URL.includes('?') && <span className='absolute right-8 text-[#fb56c1]' onClick={clearall}>CLEAR ALL</span>} </h1>
           <div className='grid grid-cols-12 h-[93%] '>
             <div className='col-span-4 h-full'>
-              <h1 className={`filter1 foo w-full border-b-[1px] font1 text-lg py-3 pl-8 bg-[#f8f6f6] black`} onClick={() => (classtoggle(1), addclass3(1))}>Gender</h1>
-              <h1 className={`filter2 foo w-full border-b-[1px] font1 text-lg py-3 pl-8 bg-[#f8f6f6] grey`} onClick={() => (classtoggle(2), addclass3(2))}>Categories</h1>
-              <h1 className={`filter3 foo w-full border-b-[1px] font1 text-lg py-3 pl-8 bg-[#f8f6f6] grey`} onClick={() => (classtoggle(3), addclass3(3))}>Color</h1>
-              <h1 className={`filter4 foo w-full border-b-[1px] font1 text-lg py-3 pl-8 bg-[#f8f6f6] grey`} onClick={() => (classtoggle(4), addclass3(4))}>Price</h1>
+              <h1 className={`filter1 foo w-full border-b-[1px] font1 text-lg py-3 pl-8 bg-[#f8f6f6] black`} onClick={() => { classtoggle(1); addclass3(1); }}>Gender</h1>
+              <h1 className={`filter2 foo w-full border-b-[1px] font1 text-lg py-3 pl-8 bg-[#f8f6f6] grey`} onClick={() => { classtoggle(2); addclass3(2); }}>Categories</h1>
+              <h1 className={`filter3 foo w-full border-b-[1px] font1 text-lg py-3 pl-8 bg-[#f8f6f6] grey`} onClick={() => { classtoggle(3); addclass3(3); }}>Color</h1>
+              <h1 className={`filter4 foo w-full border-b-[1px] font1 text-lg py-3 pl-8 bg-[#f8f6f6] grey`} onClick={() => { classtoggle(4); addclass3(4); }}>Price</h1>
             </div>
 
             <div className='col-span-8 '>
@@ -323,7 +323,7 @@ console.log(MMainlink)
                   gendernewarray && gendernewarray.map((e) =>
 
                     <li className={`flex items-center ml-4 mr-4 py-[16px] border-b-[1px] font1 text-slate-700 font${e.replace(/ /g, "")} relative`}
-                      onClick={() => (genderfun(e), addclass1(e), addclass2(e))} ><span className={`rightdiv mr-4 tick${e.replace(/ /g, "")}`}></span>
+                      onClick={() => { genderfun(e); addclass1(e); addclass2(e); }} ><span className={`rightdiv mr-4 tick${e.replace(/ /g, "")}`}></span>
                       <span className={`text-sm`}>{e}</span> <span className={`absolute right-6 text-xs`}>{gender.filter((f) => f === e).length}</span></li>
 
                   )
@@ -335,7 +335,7 @@ console.log(MMainlink)
                   Categorynewarray && Categorynewarray.map((e) =>
 
                     <li className={`flex items-center ml-4 mr-4 py-[16px] border-b-[1px] font1 text-slate-700 font${e.replace(/ /g, "")} relative`}
-                      onClick={() => (categoryfun(e), addclass1(e), addclass2(e))} ><span className={`rightdiv mr-4 tick${e.replace(/ /g, "")}`}></span>
+                      onClick={() => { categoryfun(e); addclass1(e); addclass2(e); }} ><span className={`rightdiv mr-4 tick${e.replace(/ /g, "")}`}></span>
                       <span className={`text-sm`}>{e}</span> <span className={`absolute right-6 text-xs`}>{category.filter((f) => f === e).length}</span></li>
 
                   )
@@ -346,7 +346,7 @@ console.log(MMainlink)
                   colornewarray && colornewarray.map((e) =>
 
                     <li className={`flex items-center ml-4 mr-4 py-[16px] border-b-[1px] font1 text-slate-700 font${e.replace(/ /g, "")} relative`}
-                      onClick={() => (colorfun(e), addclass1(e), addclass2(e))} ><span className={`rightdiv mr-4 tick${e.replace(/ /g, "")}`}></span>
+                      onClick={() => { colorfun(e); addclass1(e); addclass2(e); }} ><span className={`rightdiv mr-4 tick${e.replace(/ /g, "")}`}></span>
                       <span className={`text-sm`}>{e}</span> <span className={`absolute right-6 text-xs`}>{color.filter((f) => f === e).length}</span></li>
 
                   )

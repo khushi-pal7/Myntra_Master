@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment, useState } from 'react'
+import React, { useEffect, Fragment, useState, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { singleProduct } from '../../action/productaction'
 import { useDispatch, useSelector } from 'react-redux'
@@ -28,6 +28,8 @@ const ProductPage = () => {
   const {error:werror} = useSelector(state => state.wishlist)
   const [img, setimg] = useState('')
   const [showTryOn, setShowTryOn] = useState(false)
+  const slideIndexRef = useRef(1);
+
   function Addclass() {
     var foo1 = document.querySelector(`.imgfulldiv`)
     elementClass(foo1).add('visible')
@@ -72,8 +74,6 @@ const ProductPage = () => {
   const [state, setstate] = useState(false)
   
   useEffect(() => {
-    
-
     if (state === false) {
       dispatch(getuser())
       dispatch(singleProduct(param.id))
@@ -103,7 +103,7 @@ const ProductPage = () => {
               <div className='w-[10%] bg-[#2b2b2b6d] h-screen fixed top-0 left-0'onClick={Removeclass}></div>
                 <div className='min-h-screen w-[80%] mx-auto relative '>
                   <div className='absolute top-5 right-5 bg-white border-[1px] border-slate-200 font-thin text-[50px] text-slate-300 rounded-md cursor-pointer' onClick={Removeclass}><VscChromeClose/></div>
-                    <img src={img} alt="Product Image" className='min-h-screen w-full '/>
+                    <img src={img} alt="Product detail view" className='min-h-screen w-full '/>
                 </div>
                 <div className='w-[10%] bg-[#2b2b2b6d] h-screen fixed right-0 top-0'onClick={Removeclass}></div>
               </div>
@@ -116,7 +116,7 @@ const ProductPage = () => {
                   {
                     product.images.map((e, index) =>
                       <div key={index} className='w-full overflow-hidden' onClick={()=>{ Addclass(); setimg(e.url); }}>
-                        <img src={e.url} className='w-full border-[0.5px] border-slate-100 hover:-translate-y-1 hover:scale-110 duration-300 cursor-zoom-in ' alt="productImage" />
+                        <img src={e.url} className='w-full border-[0.5px] border-slate-100 hover:-translate-y-1 hover:scale-110 duration-300 cursor-zoom-in ' alt={`Product view ${index + 1}`} />
                       </div>
 
                     )
