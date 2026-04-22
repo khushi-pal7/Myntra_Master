@@ -2,10 +2,10 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getwishlist, getbag } from '../../action/orderaction';
 
-const SquadAttachPanel = ({ onShareProduct, onClose }) => {
-    // Version: 1.0.2 - Robust Sync Fix
+const SquadSelector = ({ onShareProduct, onClose }) => {
+    // Version: 1.0.3 - Cache Buster Refactor
     const dispatch = useDispatch();
-    console.log('SquadAttachPanel: Mounted v1.0.2');
+    console.log('SquadSelector: Mounted v1.0.3');
     const [activeTab, setActiveTab] = useState('wishlist');
     
     const { user, isAuthentication } = useSelector(state => state.user);

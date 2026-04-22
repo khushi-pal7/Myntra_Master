@@ -7,7 +7,7 @@ import SquadMessage from './SquadMessage';
 import SquadProductCard from './SquadProductCard';
 import SquadInviteModal from './SquadInviteModal';
 import SquadSignupPrompt from './SquadSignupPrompt';
-import SquadAttachPanel from './SquadAttachPanel';
+import SquadSelector from './SquadSelector';
 
 const SquadRoom = () => {
     const dispatch = useDispatch();
@@ -343,9 +343,9 @@ const SquadRoom = () => {
                     )}
                 </div>
 
-                {/* Attach Panel */}
+                {/* Selector Panel */}
                 {showAttach && !isGuest && (
-                    <SquadAttachPanel
+                    <SquadSelector
                         onShareProduct={handleShareProduct}
                         onClose={() => setShowAttach(false)}
                     />

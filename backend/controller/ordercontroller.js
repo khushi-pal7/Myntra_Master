@@ -48,8 +48,8 @@ exports.getwishlist = A(async (req, res, next) => {
 
     res.status(200).json({
       success:true,
-      wishlist
-      
+      wishlist,
+      items: wishlist ? wishlist.orderItems : []
   })
   
 })
@@ -98,8 +98,8 @@ exports.createbag = A(async (req, res, next) => {
   
   res.status(200).json({
     success:true,
-    bag
-    
+    bag,
+    items: bag ? bag.orderItems : []
 })
 
 })
