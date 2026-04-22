@@ -8,41 +8,48 @@ const SquadAttachPanel = ({ onShareProduct, onClose }) => {
     const [bagProducts, setBagProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const { user } = useSelector(state => state.user);
+    const { user, isAuthentication } = useSelector(state => state.user);
 
     useEffect(() => {
         const fetchData = async () => {
+            if (!isAuthentication || !user?._id) {
+                setLoading(false);
+                return;
+            }
+
             setLoading(true);
             try {
                 // Fetch wishlist
-                const wishRes = await axios.get(`/api/v1/get_wishlist/${user?._id}`);
+                const wishRes = await axios.get(`/api/v1/get_wishlist/${user._id}`);
+                console.log('Squad Wishlist Response:', wishRes.data);
                 if (wishRes.data.success && wishRes.data.wishlist) {
-                    const products = wishRes.data.wishlist.orderItems
+                    const products = (wishRes.data.wishlist.orderItems || [])
                         .map(item => item.product)
                         .filter(product => product && product._id);
                     setWishlistProducts(products);
                 }
             } catch (err) {
-                console.log('Wishlist fetch:', err.message);
+                console.log('Wishlist fetch error:', err.response?.data?.message || err.message);
             }
 
             try {
                 // Fetch bag
-                const bagRes = await axios.get(`/api/v1/bag/${user?._id}`);
+                const bagRes = await axios.get(`/api/v1/bag/${user._id}`);
+                console.log('Squad Bag Response:', bagRes.data);
                 if (bagRes.data.success && bagRes.data.bag) {
-                    const products = bagRes.data.bag.orderItems
+                    const products = (bagRes.data.bag.orderItems || [])
                         .map(item => item.product)
                         .filter(product => product && product._id);
                     setBagProducts(products);
                 }
             } catch (err) {
-                console.log('Bag fetch:', err.message);
+                console.log('Bag fetch error:', err.response?.data?.message || err.message);
             }
             setLoading(false);
         };
 
         fetchData();
-    }, [user]);
+    }, [user, isAuthentication]);
 
     const items = activeTab === 'wishlist' ? wishlistProducts : bagProducts;
 
