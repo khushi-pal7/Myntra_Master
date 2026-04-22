@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getwishlist, getbag } from '../../action/orderaction';
 
 const SquadSelector = ({ onShareProduct, onClose }) => {
-    // Version: 1.0.3 - Cache Buster Refactor
+    // Version: 1.0.4 - Build Fix & Robust Sync
     const dispatch = useDispatch();
-    console.log('SquadSelector: Mounted v1.0.3');
+    console.log('SquadSelector: Mounted v1.0.4');
     const [activeTab, setActiveTab] = useState('wishlist');
     
     const { user, isAuthentication } = useSelector(state => state.user);
@@ -122,4 +122,4 @@ const SquadSelector = ({ onShareProduct, onClose }) => {
     );
 };
 
-export default SquadAttachPanel;
+export default SquadSelector;

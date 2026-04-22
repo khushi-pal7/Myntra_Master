@@ -97,10 +97,10 @@ export const getqtyupdate = (qtydata) => async (dispatch) => {
 export const deletebag = (fdata) => async (dispatch) => {
 
     try {
-        dispatch({ type: SUCCESS_DELETE_BAG })
+        dispatch({ type: REQUEST_DELETE_BAG })
         const config = { headers: { "Content-Type": "application/json" } }
         const { data } = await axios.put(`/api/v1/delete_bag`,fdata, config )
-        dispatch({ type: REQUEST_DELETE_BAG, payload: data.success,})
+        dispatch({ type: SUCCESS_DELETE_BAG, payload: data.success,})
     } catch (error) {
         dispatch({ type: FAIL_DELETE_BAG, payload: error.response?.data?.message || error.message })
     }
@@ -109,10 +109,10 @@ export const deletebag = (fdata) => async (dispatch) => {
 export const deletewish = (fdata) => async (dispatch) => {
 
     try {
-        dispatch({ type: SUCCESS_DELETE_WISH })
+        dispatch({ type: REQUEST_DELETE_WISH })
         const config = { headers: { "Content-Type": "application/json" } }
         const { data } = await axios.put(`/api/v1/delete_wish`,fdata, config )
-        dispatch({ type: REQUEST_DELETE_WISH, payload: data.success,})
+        dispatch({ type: SUCCESS_DELETE_WISH, payload: data.success,})
     } catch (error) {
         dispatch({ type: FAIL_DELETE_WISH, payload: error.response?.data?.message || error.message })
     }
