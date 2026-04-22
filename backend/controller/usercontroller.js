@@ -28,12 +28,9 @@ exports.registermobile = A(async (req, res, next) => {
   
     if (response.return === true) {
       
-      async function fun() {
-        user.otp = otp;
-        await user.save({ validateBeforeSave: false })
-      }
-      fun()
-     
+      user.otp = otp;
+      await user.save({ validateBeforeSave: false })
+      
       res.status(200).json({
         success: true,
         user,
@@ -45,11 +42,8 @@ exports.registermobile = A(async (req, res, next) => {
       console.log(`📱 OTP for ${phonenumber}: ${otp}`)
       
       // Save OTP even if SMS fails (fallback to console)
-      async function fun() {
-        user.otp = otp;
-        await user.save({ validateBeforeSave: false })
-      }
-      fun()
+      user.otp = otp;
+      await user.save({ validateBeforeSave: false })
       
       res.status(200).json({
         success: true,
@@ -64,11 +58,8 @@ exports.registermobile = A(async (req, res, next) => {
     console.log(`📱 OTP for ${phonenumber}: ${otp}`)
     
     // Save OTP even if SMS service fails
-    async function fun() {
-      user.otp = otp;
-      await user.save({ validateBeforeSave: false })
-    }
-    fun()
+    user.otp = otp;
+    await user.save({ validateBeforeSave: false })
     
     res.status(200).json({
       success: true,
@@ -97,10 +88,10 @@ exports.optverify = A(async (req, res, next)=>{
     if (!user.otp) {
       return next( new Errorhandler("Your OTP has been expired or not has been genrated pls regenrate OTP", 400))
     }
-    if (user.otp !== otp) {
+    if (user.otp != otp) {
       return next( new Errorhandler("You entered expire or wrong OTP", 400))
     }
-    if(otp === user.otp){
+    if(otp == user.otp){
       user.verify = 'verified'
       user.otp =null
       await user.save({ validateBeforeSave: false })
@@ -168,11 +159,9 @@ exports.resendotp = A(async (req, res, next)=>{
     console.log(`📱 Resend OTP for ${req.params.id}: ${otp}`)
     
     // Save OTP even if SMS service fails
-    async function fun() {
-      user.otp = otp;
-      await user.save({ validateBeforeSave: false })
-    }
-    fun()
+    user.otp = otp;
+    await user.save({ validateBeforeSave: false })
+    
     setInterval(async function () {
       user.otp = null;
       await user.save({ validateBeforeSave: false })
