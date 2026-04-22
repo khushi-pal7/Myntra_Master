@@ -10,6 +10,7 @@ import axios from 'axios';
 
 // Automatically route API requests to the production backend if deployed
 axios.defaults.baseURL = process.env.REACT_APP_API_URL || '';
+axios.defaults.withCredentials = true;
 
 const option = {
   timeout: 3000,
