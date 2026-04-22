@@ -19,7 +19,6 @@ const SquadRoom = () => {
 
     const [messageInput, setMessageInput] = useState('');
     const [socket, setSocket] = useState(null);
-    const [connected, setConnected] = useState(false);
 
     // Socket instance for real-time syncing
     useEffect(() => {
@@ -78,12 +77,11 @@ const SquadRoom = () => {
         });
 
         newSocket.on('connect', () => {
-            setConnected(true);
             newSocket.emit('squad:join-room', roomCode);
         });
 
         newSocket.on('disconnect', () => {
-            setConnected(false);
+            // disconnected handle
         });
 
         newSocket.on('squad:message', (msg) => {

@@ -1,24 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { FiDollarSign, FiStar, FiTrendingUp, FiShoppingBag, FiZap, FiHeart } from 'react-icons/fi'
+import { FiDollarSign, FiStar, FiTrendingUp, FiShoppingBag, FiHeart } from 'react-icons/fi'
 import { BsLightning } from 'react-icons/bs'
 import { HiSparkles } from 'react-icons/hi'
 import { FaRobot } from 'react-icons/fa'
-import { MdRecommend, MdTrendingUp } from 'react-icons/md'
+import { MdRecommend } from 'react-icons/md'
 
 const AIRecommendations = ({ recommendations, onMoveToBag, userId }) => {
-    const [animatedCards, setAnimatedCards] = useState({})
-
     useEffect(() => {
-        // Animate cards on mount
-        const timer = setTimeout(() => {
-            setAnimatedCards({
-                budget: true,
-                quality: true,
-                balanced: true
-            })
-        }, 300)
-
-        return () => clearTimeout(timer)
+        // Simple mount effect logic if needed
     }, [])
 
     const generateRecommendationText = (type, product) => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { voteOnProduct, reactToProduct } from '../../action/squadaction';
 
@@ -6,7 +6,6 @@ const EMOJIS = ['❤️', '🔥', '😍', '👎', '🤔', '💰'];
 
 const SquadProductCard = ({ sharedProduct, roomCode, currentUserId, currentUserName, isGuest, onAddToCart, tryOnImageUrl }) => {
     const dispatch = useDispatch();
-    const [showSignup, setShowSignup] = useState(false);
     const product = sharedProduct.productId;
 
     if (!product) return null;

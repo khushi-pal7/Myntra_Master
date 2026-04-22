@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { createbag, deletewish, getwishlist } from '../../action/orderaction'
 import { getuser, clearErrors } from '../../action/useraction'
 import { useAlert } from 'react-alert'
-import { MdClear, MdCompareArrows, MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md'
-import { FiZap, FiDollarSign, FiStar, FiTruck } from 'react-icons/fi'
-import { BsTree } from 'react-icons/bs'
+import { MdCompareArrows, MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md'
 import { HiSparkles } from 'react-icons/hi'
 import { FaRobot } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
@@ -190,7 +188,7 @@ const AIContrastWishlist = () => {
                 }
             }
         }
-    }, [dispatch, error, userloading, isAuthentication, user, state, state1])
+    }, [dispatch, error, userloading, isAuthentication, user, state, state1, Alert])
 
     if (!isAuthentication) {
         return <Nowishlist />

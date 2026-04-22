@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment, useState } from 'react'
+import React, { useEffect, Fragment } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { singleProduct } from '../../action/productaction'
@@ -64,7 +64,7 @@ const MobileProductPage = () => {
             />
         );
     }
-    const {loading: userloading, user, isAuthentication} = useSelector(state => state.user)
+    const {user} = useSelector(state => state.user)
 
     function addtowishlist() {
         if (user) {
