@@ -63,7 +63,8 @@ const SquadRoom = () => {
 
         const newSocket = io(socketUrl, {
             auth: authPayload,
-            transports: ['websocket', 'polling']
+            transports: ['websocket', 'polling'],
+            withCredentials: true
         });
 
         newSocket.on('connect', () => {

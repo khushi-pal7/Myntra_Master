@@ -1,12 +1,14 @@
 const jwt = require('jsonwebtoken');
 const { SquadRoom, SquadMessage, SquadGuest } = require('../model/squadmodel');
+const cookie = require('cookie');
 
 function initSquadSocket(io) {
     const squadNamespace = io.of('/squad');
 
     squadNamespace.use(async (socket, next) => {
         try {
-            const token = socket.handshake.auth.token;
+            const cookies = cookie.parse(socket.handshake.headers.cookie || '');
+            const token = socket.handshake.auth.token || cookies.token;
             const guestToken = socket.handshake.auth.guestToken;
 
             if (token) {
