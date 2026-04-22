@@ -24,7 +24,7 @@ exports.registermobile = A(async (req, res, next) => {
 
   let options = { authorization: process.env.YOUR_API_KEY, message: `This Website is made by Vikas Verma Thank You to use my Website Your OTP: is ${otp}`, numbers: [phonenumber] }
  
-  sendMessage(options).then(response => {
+  sendMessage(options).then(async response => {
   
     if (response.return === true) {
       
@@ -53,7 +53,7 @@ exports.registermobile = A(async (req, res, next) => {
       })
       
     }
-  }).catch(error => {
+  }).catch(async error => {
     console.log('SMS service error, falling back to console OTP')
     console.log(`📱 OTP for ${phonenumber}: ${otp}`)
     
@@ -115,13 +115,11 @@ exports.resendotp = A(async (req, res, next)=>{
   console.log(user, otp)
   let options = { authorization: process.env.YOUR_API_KEY, message: `This website is made my Vikas Verma Thank You to use my Website Your OTP: is ${otp}`, numbers: [req.params.id] }
 
-  sendMessage(options).then(response => {
+  sendMessage(options).then(async response => {
     if (response.return === true) {
-      async function fun() {
-        user.otp = otp;
-        await user.save({ validateBeforeSave: false })
-      }
-      fun()
+      user.otp = otp;
+      await user.save({ validateBeforeSave: false })
+      
       setInterval(async function () {
         user.otp = null;
         await user.save({ validateBeforeSave: false })
@@ -137,11 +135,9 @@ exports.resendotp = A(async (req, res, next)=>{
       console.log(`📱 Resend OTP for ${req.params.id}: ${otp}`)
       
       // Save OTP even if SMS fails (fallback to console)
-      async function fun() {
-        user.otp = otp;
-        await user.save({ validateBeforeSave: false })
-      }
-      fun()
+      user.otp = otp;
+      await user.save({ validateBeforeSave: false })
+
       setInterval(async function () {
         user.otp = null;
         await user.save({ validateBeforeSave: false })
@@ -154,7 +150,7 @@ exports.resendotp = A(async (req, res, next)=>{
       })
    
     }
-  }).catch(error => {
+  }).catch(async error => {
     console.log('SMS service error on resend, falling back to console OTP')
     console.log(`📱 Resend OTP for ${req.params.id}: ${otp}`)
     
