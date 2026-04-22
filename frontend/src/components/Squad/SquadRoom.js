@@ -42,7 +42,7 @@ const SquadRoom = () => {
     // Determine if current user is a guest
     const guestToken = localStorage.getItem(`squad_guest_${roomCode}`);
     const guestName = localStorage.getItem(`squad_guest_name_${roomCode}`);
-    const guestId = localStorage.getItem(`squad_guest_id_${roomCode}`);
+    const guestId = localStorage.getItem('squad_guest_id_global') || localStorage.getItem(`squad_guest_id_${roomCode}`);
     const isGuest = !isAuthentication && !!guestToken;
 
     const currentUserId = isGuest ? guestId : user?._id;

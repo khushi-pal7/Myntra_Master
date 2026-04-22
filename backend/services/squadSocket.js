@@ -116,6 +116,21 @@ function initSquadSocket(io) {
             });
         });
 
+        // ── Real-time Wishlist/Bag Sync Relay ──────────────────────
+        socket.on('wishlist_updated', () => {
+            if (socket.currentRoom) {
+                console.log(`Relaying wishlist update in room ${socket.currentRoom}`);
+                squadNamespace.to(socket.currentRoom).emit('wishlist_updated');
+            }
+        });
+
+        socket.on('bag_updated', () => {
+            if (socket.currentRoom) {
+                console.log(`Relaying bag update in room ${socket.currentRoom}`);
+                squadNamespace.to(socket.currentRoom).emit('bag_updated');
+            }
+        });
+
         socket.on('squad:stop-typing', (roomCode) => {
             socket.to(roomCode).emit('squad:stop-typing', {
                 oderId: socket.userId
